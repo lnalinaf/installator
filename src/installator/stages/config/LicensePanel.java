@@ -8,7 +8,7 @@ package installator.stages.config;
  *
  * @author alina
  */
-public class LicensePanel extends javax.swing.JPanel {
+public class LicensePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
 
     /**
      * Creates new form LicensePanel
@@ -99,4 +99,9 @@ public class LicensePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public T getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

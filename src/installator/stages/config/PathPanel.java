@@ -8,7 +8,7 @@ package installator.stages.config;
  *
  * @author alina
  */
-public class PathPanel extends javax.swing.JPanel {
+public class PathPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
 
     /**
      * Creates new form PathPanel
@@ -39,4 +39,9 @@ public class PathPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public T getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

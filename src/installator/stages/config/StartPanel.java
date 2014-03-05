@@ -10,7 +10,7 @@ import javax.swing.JLabel;
  *
  * @author alina
  */
-public class StartPanel extends javax.swing.JPanel {
+public class StartPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
     
 
     /**
@@ -76,4 +76,9 @@ public class StartPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public T getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

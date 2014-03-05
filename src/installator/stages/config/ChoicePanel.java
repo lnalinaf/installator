@@ -8,7 +8,7 @@ package installator.stages.config;
  *
  * @author alina
  */
-public class ChoicePanel extends javax.swing.JPanel {
+public class ChoicePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
 
     /**
      * Creates new form ChoicePanel
@@ -105,4 +105,9 @@ public class ChoicePanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public T getData() {
+        return null;
+    }
 }

@@ -8,7 +8,7 @@ package installator.stages.config;
  *
  * @author alina
  */
-public class MultichoicePanel extends javax.swing.JPanel {
+public class MultichoicePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
 
     /**
      * Creates new form MultichoicePanel
@@ -96,4 +96,9 @@ public class MultichoicePanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public T getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
