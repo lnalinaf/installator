@@ -10,20 +10,22 @@ import installator.ConfigStage;
  *
  * @author alina
  */
-public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePanel<Integer>{
+public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePanel<Integer> {
 
-    
     private ChoiceStage<Integer> stage;
-    
+
     //TODO 
     // 1)сделать обработчик нажатия на кнопку, в котором вызвать метод 
-    // stage.setData(getData());
+    //stage.setData(getData());
     // 2)сделать метод setText который устанавливает переданный текст в метку
-    
     /**
      * Creates new form ChoicePanel
      */
-    public ChoicePanel(ChoiceStage<Integer> stage) {
+    public ChoicePanel(ChoiceStage<Integer> stage, String name, String text, String[] radioButtontext) {
+        setName(name);
+        jLabel1.setText(text);
+        if(jRadioButton1.isSelected() )
+        //jRadioButton1.setText(radioButtontext); массив меня смущает.надо сделать цикл по радиобаттонам ещё?
         //TODO
         //дополнить конструктор, а именно 
         // 1)передать имя панельки и задать его сразу же окну
@@ -32,6 +34,11 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         // 3) передать строку с текстом и присвоить ее метке.
         this.stage = stage;
         initComponents();
+    }
+
+    public void TextLabel() {
+        jLabel1.setText(" ");
+
     }
 
     /**
@@ -50,6 +57,7 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         jRadioButton3 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jLabel1.setText("Выберите вариант установки:");
 
@@ -72,6 +80,13 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         jButton2.setMinimumSize(new java.awt.Dimension(88, 25));
         jButton2.setPreferredSize(new java.awt.Dimension(88, 25));
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,10 +105,15 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
                 .addContainerGap(167, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(71, 71, 71))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,17 +126,25 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
                 .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        stage.setData(getData());
+
+    }//GEN-LAST:event_jButton3ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -125,6 +153,13 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
 
     @Override
     public Integer getData() {
+     if(jRadioButton1.isSelected() )
+         System.out.println(jRadioButton1.getName());//но getName возвращает стринг
+      if(jRadioButton2.isSelected() )
+         System.out.println(jRadioButton1.getName());
+       if(jRadioButton3.isSelected() )
+         System.out.println(jRadioButton1.getName());
+        
         //TODO
         //сделать считывание данных. мы должны вернуть номер радиокнопки, 
         //которая нажата.
@@ -133,6 +168,6 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
 
     @Override
     public void setConfigStage(ConfigStage<?> stage) {
-        this.stage = (ChoiceStage<Integer>)stage;
+        this.stage = (ChoiceStage<Integer>) stage;
     }
 }
