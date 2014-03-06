@@ -4,11 +4,13 @@
  */
 package installator.stages.config;
 
+import installator.ConfigStage;
+
 /**
  *
  * @author alina
  */
-public class LicensePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
+public class LicensePanel<Boolean> extends javax.swing.JPanel implements StagePanel<Boolean>{
 
     /**
      * Creates new form LicensePanel
@@ -101,7 +103,12 @@ public class LicensePanel<T> extends javax.swing.JPanel implements StagePanel<T>
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public T getData() {
+    public Boolean getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setConfigStage(ConfigStage<?> stage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

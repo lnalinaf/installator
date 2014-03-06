@@ -6,6 +6,8 @@
 
 package installator.stages.config;
 
+import installator.ConfigStage;
+
 /**
  *
  * @author cfif11
@@ -13,5 +15,9 @@ package installator.stages.config;
 public interface StagePanel<T> {
     
     public T getData();
+    
+    public void setConfigStage(ConfigStage<?> stage);
+    
+    //public void setText(String text);
     
 }

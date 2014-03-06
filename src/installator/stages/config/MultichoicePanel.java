@@ -4,16 +4,33 @@
  */
 package installator.stages.config;
 
+import installator.ConfigStage;
+
 /**
  *
  * @author alina
  */
-public class MultichoicePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
+public class MultichoicePanel<Integer> extends javax.swing.JPanel implements StagePanel<Integer[]>{
 
+    
+    private  MultichoiceStage<Integer[]> stage;
+    
+    //TODO 
+    // 1)сделать обработчик нажатия на кнопку, в котором вызвать метод 
+    // stage.setData(getData());
+    // 2)сделать метод setText который устанавливает переданный текст в метку
+    
+    
     /**
      * Creates new form MultichoicePanel
      */
     public MultichoicePanel() {
+         //TODO
+        //дополнить конструктор, а именно 
+        // 1)передать имя панельки и задать его сразу же окну
+        // 2)так же массив строк с текстом для чекбоксов и сразу же присвоить
+        // этот текст чекбоксам(пока их только три, три и присвой)
+        // 3) передать строку с текстом и присвоить ее метке.
         initComponents();
     }
 
@@ -97,8 +114,17 @@ public class MultichoicePanel<T> extends javax.swing.JPanel implements StagePane
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
+
     @Override
-    public T getData() {
+    public void setConfigStage(ConfigStage<?> stage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer[] getData() {
+        //TODO
+        //сделать считывание данных. мы должны вернуть массив номеров чекбоксов, 
+        //которые нажаты.
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

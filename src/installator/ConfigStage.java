@@ -1,13 +1,14 @@
 package installator;
 
+import installator.stages.config.StagePanel;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import javax.swing.JPanel;
 
-public class ConfigStage<T> implements Callable<T>{
+public abstract class ConfigStage<T> implements Callable<T>{
     
-    private final String name;
-    private final String text; 
+    private String name;
+    private String text; 
     private boolean visible;
     private JPanel panel;
     protected ArrayList<T> data = new ArrayList<T>();
@@ -23,17 +24,29 @@ public class ConfigStage<T> implements Callable<T>{
         this.text = text;
     }
     
-    public void setPanel(JPanel panel) {
-        this.panel = panel;
+    public void setPanel(StagePanel<T> panel) throws Exception {
+        if(panel instanceof JPanel) {
+            panel.setConfigStage(this);
+            this.panel = (JPanel)panel;
+        } else {
+            throw new Exception("panel isnt extends JPanel");
+        }
     }
     
     public JPanel getPanel() {
         return panel;
     }
     
-    public void setDataTo() {
+    public void setName(String name) {
+        this.name = name;
         panel.setName(name);
     }
+    
+    public void setText(String text) {
+        this.text = text;
+    }
+    
+    public abstract void setData(T data);
     
     public void setVisible(boolean visible) {
         this.visible = visible;

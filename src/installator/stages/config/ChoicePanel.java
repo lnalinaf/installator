@@ -4,16 +4,33 @@
  */
 package installator.stages.config;
 
+import installator.ConfigStage;
+
 /**
  *
  * @author alina
  */
-public class ChoicePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
+public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePanel<Integer>{
 
+    
+    private ChoiceStage<Integer> stage;
+    
+    //TODO 
+    // 1)сделать обработчик нажатия на кнопку, в котором вызвать метод 
+    // stage.setData(getData());
+    // 2)сделать метод setText который устанавливает переданный текст в метку
+    
     /**
      * Creates new form ChoicePanel
      */
-    public ChoicePanel() {
+    public ChoicePanel(ChoiceStage<Integer> stage) {
+        //TODO
+        //дополнить конструктор, а именно 
+        // 1)передать имя панельки и задать его сразу же окну
+        // 2)так же массив строк с текстом для радио кнопок и сразу же присвоить
+        // этот текст радиокнопкам(пока их только три, три и присвой)
+        // 3) передать строку с текстом и присвоить ее метке.
+        this.stage = stage;
         initComponents();
     }
 
@@ -107,7 +124,15 @@ public class ChoicePanel<T> extends javax.swing.JPanel implements StagePanel<T>{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public T getData() {
+    public Integer getData() {
+        //TODO
+        //сделать считывание данных. мы должны вернуть номер радиокнопки, 
+        //которая нажата.
         return null;
+    }
+
+    @Override
+    public void setConfigStage(ConfigStage<?> stage) {
+        this.stage = (ChoiceStage<Integer>)stage;
     }
 }

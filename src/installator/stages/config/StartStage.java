@@ -12,4 +12,9 @@ public class StartStage<T> extends ConfigStage<T> {
         super(text, question);
                 
     }
+
+    @Override
+    public void setData(T data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

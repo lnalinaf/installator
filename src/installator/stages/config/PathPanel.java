@@ -4,11 +4,13 @@
  */
 package installator.stages.config;
 
+import installator.ConfigStage;
+
 /**
  *
  * @author alina
  */
-public class PathPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
+public class PathPanel<String> extends javax.swing.JPanel implements StagePanel<String>{
 
     /**
      * Creates new form PathPanel
@@ -41,7 +43,12 @@ public class PathPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public T getData() {
+    public String getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setConfigStage(ConfigStage<?> stage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

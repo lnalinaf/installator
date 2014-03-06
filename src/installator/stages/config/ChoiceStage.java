@@ -2,7 +2,7 @@ package installator.stages.config;
 
 import installator.ConfigStage;
 
-public class ChoiceStage<T> extends ConfigStage<T>{
+public class ChoiceStage<Integer> extends ConfigStage<Integer>{
 
     public String item(){return null;}
     
@@ -10,6 +10,11 @@ public class ChoiceStage<T> extends ConfigStage<T>{
     
     public ChoiceStage(String[] options) {
         super(null, null);
+    }
+
+    @Override
+    public void setData(Integer data) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

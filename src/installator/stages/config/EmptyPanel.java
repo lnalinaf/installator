@@ -4,6 +4,8 @@
  */
 package installator.stages.config;
 
+import installator.ConfigStage;
+
 /**
  *
  * @author alina
@@ -42,6 +44,11 @@ public class EmptyPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
 
     @Override
     public T getData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setConfigStage(ConfigStage<?> stage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
