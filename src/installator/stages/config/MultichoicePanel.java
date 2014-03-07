@@ -33,7 +33,8 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
         // 3) передать строку с текстом и присвоить ее метке.
         initComponents();
     }
-
+    public void TextLabel(String text) {
+        jLabel1.setText(text);
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,6 +123,14 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
 
     @Override
     public Integer[] getData() {
+        //Enumeration<AbstractButton> en = buttonGroup1.getElements();
+        //int i = 0;
+        //while(en.hasMoreElements()) {
+            //if(en.nextElement().isSelected()) {
+                //return new Integer(i)  
+            //}
+           // i++;
+           return null;
         //TODO
         //сделать считывание данных. мы должны вернуть массив номеров чекбоксов, 
         //которые нажаты.
