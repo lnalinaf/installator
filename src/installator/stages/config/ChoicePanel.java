@@ -24,7 +24,11 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
     public ChoicePanel(ChoiceStage<Integer> stage, String name, String text, String[] radioButtontext) {
         setName(name);
         jLabel1.setText(text);
-        if(jRadioButton1.isSelected() )
+        Enumeration<AbstractButton> en = buttonGroup1.getElements();
+        int i = 0;
+        while (en.hasMoreElements()) {
+            en.nextElement().setText(radioButtonText[i++]);
+        }
         //jRadioButton1.setText(radioButtontext); массив меня смущает.надо сделать цикл по радиобаттонам ещё?
         //TODO
         //дополнить конструктор, а именно 
@@ -36,9 +40,8 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         initComponents();
     }
 
-    public void TextLabel() {
-        jLabel1.setText(" ");
-
+    public void TextLabel(String text) {
+        jLabel1.setText(text);
     }
 
     /**
@@ -136,7 +139,7 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         stage.setData(getData());
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -153,12 +156,13 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
 
     @Override
     public Integer getData() {
-     if(jRadioButton1.isSelected() )
-         System.out.println(jRadioButton1.getName());//но getName возвращает стринг
-      if(jRadioButton2.isSelected() )
-         System.out.println(jRadioButton1.getName());
-       if(jRadioButton3.isSelected() )
-         System.out.println(jRadioButton1.getName());
+      Enumeration<AbstractButton> en = buttonGroup1.getElements();
+        int i = 0;
+        while(en.hasMoreElements()) {
+            if(en.nextElement().isSelected()) {
+                //return new Integer(i)  
+            }
+            i++;
         
         //TODO
         //сделать считывание данных. мы должны вернуть номер радиокнопки, 
