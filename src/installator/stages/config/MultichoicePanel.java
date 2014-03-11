@@ -117,11 +117,6 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
 
 
     @Override
-    public void setConfigStage(ConfigStage<?> stage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Integer[] getData() {
         //Enumeration<AbstractButton> en = buttonGroup1.getElements();
         //int i = 0;

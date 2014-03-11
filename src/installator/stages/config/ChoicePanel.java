@@ -49,10 +49,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         this.stage = stage;
     }
 
-    public void TextLabel(String text) {
-        jLabel1.setText(text);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,9 +65,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -87,10 +80,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         return null;
     }
 
-    @Override
-    public void setConfigStage(ConfigStage<?> stage) {
-        this.stage = (ChoiceStage<Integer>) stage;
-    }
 
     private void fillButtonGroup() {
         buttonHorizontalGroup

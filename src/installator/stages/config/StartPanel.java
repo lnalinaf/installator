@@ -83,8 +83,4 @@ public class StartPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setConfigStage(ConfigStage<?> stage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -24,15 +24,6 @@ public abstract class ConfigStage<T> implements Callable<T>{
         this.text = text;
     }
     
-    public void setPanel(StagePanel<T> panel) throws Exception {
-        if(panel instanceof JPanel) {
-            panel.setConfigStage(this);
-            this.panel = (JPanel)panel;
-        } else {
-            throw new Exception("panel isnt extends JPanel");
-        }
-    }
-    
     public JPanel getPanel() {
         return panel;
     }

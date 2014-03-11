@@ -16,8 +16,6 @@ public interface StagePanel<T> {
     
     public T getData();
     
-    public void setConfigStage(ConfigStage<?> stage);
-    
     //public void setText(String text);
     
 }
