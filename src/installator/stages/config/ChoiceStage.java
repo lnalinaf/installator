@@ -8,8 +8,8 @@ public class ChoiceStage<Integer> extends ConfigStage<Integer>{
     
     public int itemIndex(){return 0;}
     
-    public ChoiceStage(String[] options) {
-        super(null, null);
+    public ChoiceStage(String name, String text) {
+        super(name, text);
     }
 
     @Override

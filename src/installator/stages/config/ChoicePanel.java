@@ -5,14 +5,24 @@
 package installator.stages.config;
 
 import installator.ConfigStage;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
 
 /**
  *
  * @author alina
  */
-public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePanel<Integer> {
+public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Integer> {
 
     private ChoiceStage<Integer> stage;
+    javax.swing.GroupLayout layout;
+    private javax.swing.GroupLayout.SequentialGroup buttonGroup; 
+    private javax.swing.GroupLayout.ParallelGroup allGroup;
+
+    private final int LEFT_BUTTON_GAP = 101;
+    private final int WIDTH_BUTTON = 88;
+    private final int HEIGHT_BUTTON = 25;
 
     //TODO 
     // 1)сделать обработчик нажатия на кнопку, в котором вызвать метод 
@@ -21,7 +31,8 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
     /**
      * Creates new form ChoicePanel
      */
-    public ChoicePanel(ChoiceStage<Integer> stage, String name, String text, String[] radioButtontext) {
+    public ChoicePanel(ChoiceStage<Integer> stage, String name, String text, 
+            String[] radioButtonText) {
         initComponents();
         setName(name);
         jLabel1.setText(text);
@@ -30,13 +41,6 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         while (en.hasMoreElements()) {
             en.nextElement().setText(radioButtonText[i++]);
         }
-        //jRadioButton1.setText(radioButtontext); массив меня смущает.надо сделать цикл по радиобаттонам ещё?
-        //TODO
-        //дополнить конструктор, а именно 
-        // 1)передать имя панельки и задать его сразу же окну
-        // 2)так же массив строк с текстом для радио кнопок и сразу же присвоить
-        // этот текст радиокнопкам(пока их только три, три и присвой)
-        // 3) передать строку с текстом и присвоить ее метке.
         this.stage = stage;
     }
 
@@ -74,75 +78,54 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         jRadioButton3.setText("jRadioButton3");
 
         jButton1.setText("Назад");
-        jButton1.setMaximumSize(new java.awt.Dimension(88, 25));
-        jButton1.setMinimumSize(new java.awt.Dimension(88, 25));
-        jButton1.setPreferredSize(new java.awt.Dimension(88, 25));
+        jButton1.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton1.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton1.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
 
         jButton2.setText("Далее");
-        jButton2.setMaximumSize(new java.awt.Dimension(88, 25));
-        jButton2.setMinimumSize(new java.awt.Dimension(88, 25));
-        jButton2.setPreferredSize(new java.awt.Dimension(88, 25));
+        jButton2.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton2.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton2.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jButton3.setText("Отмена");
+        jButton3.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton3.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton3.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        layout = new javax.swing.GroupLayout(this);
+        buttonGroup = layout.createSequentialGroup();
+        allGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+       
+        fillButtonGroup();
+        fillAllGroup();
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel1)))
-                .addContainerGap(167, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(71, 71, 71))))
+                .addContainerGap()
+                .addGroup(allGroup)
+                .addContainerGap())
         );
-		layout.setVerticalGroup(
+        layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        stage.setData(getData());
-
-    }//GEN-LAST:event_jButton3ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -156,22 +139,40 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
 
     @Override
     public Integer getData() {
-      Enumeration<AbstractButton> en = buttonGroup1.getElements();
-        int i = 0;
+        Enumeration<AbstractButton> en = buttonGroup1.getElements();
+        int i = 0;  
         while(en.hasMoreElements()) {
             if(en.nextElement().isSelected()) {
-                //return new Integer(i)  
+                return new Integer(i); 
             }
             i++;
-        
-        //TODO
-        //сделать считывание данных. мы должны вернуть номер радиокнопки, 
-        //которая нажата.
+        }
         return null;
     }
 
     @Override
     public void setConfigStage(ConfigStage<?> stage) {
         this.stage = (ChoiceStage<Integer>) stage;
+    }
+
+    private void fillButtonGroup() {
+        buttonGroup
+            .addGap(0, LEFT_BUTTON_GAP, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, WIDTH_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE);
+    }
+
+    private void fillAllGroup() {
+        allGroup
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonGroup);
+        Enumeration<AbstractButton> en = buttonGroup1.getElements();
+        int i = 0;  
+        while(en.hasMoreElements()) {
+            allGroup.addComponent(en.nextElement(), javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+        }                 
     }
 }
