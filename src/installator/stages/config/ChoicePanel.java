@@ -22,6 +22,7 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
      * Creates new form ChoicePanel
      */
     public ChoicePanel(ChoiceStage<Integer> stage, String name, String text, String[] radioButtontext) {
+        initComponents();
         setName(name);
         jLabel1.setText(text);
         if(jRadioButton1.isSelected() )
@@ -33,7 +34,6 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
         // этот текст радиокнопкам(пока их только три, три и присвой)
         // 3) передать строку с текстом и присвоить ее метке.
         this.stage = stage;
-        initComponents();
     }
 
     public void TextLabel() {
@@ -115,7 +115,7 @@ public class ChoicePanel<Integer> extends javax.swing.JPanel implements StagePan
                         .addComponent(jButton3)
                         .addGap(71, 71, 71))))
         );
-        layout.setVerticalGroup(
+		layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
