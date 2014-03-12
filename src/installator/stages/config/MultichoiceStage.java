@@ -8,8 +8,8 @@ public class MultichoiceStage<Integer> extends ConfigStage<Integer[]>{
     
     public int[] itemIndexes(){return null;};
     
-    public MultichoiceStage(String[] args) {
-        super(null, null);
+    public MultichoiceStage(String name, String text) {
+        super(name, text);
     }
 
     @Override

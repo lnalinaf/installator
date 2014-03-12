@@ -40,12 +40,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         myInit(radioButtonsText);
         setName(name);
         jLabel1.setText(text);
-//        for (int i = 0; i < radioButtonText.length; i++) {
-//            radioButtons[i]=new JRadioButton();
-//            radioButtons[i].setText(text);
-//        buttonGroup1.add(radioButtons[i]);
-//        }
-       
         this.stage = stage;
     }
 
@@ -123,9 +117,9 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     private void myInit(String[] radioButtonsText) {
         buttonGroup1 = new javax.swing.ButtonGroup();
         for (int i = 0; i < radioButtonsText.length; i++) {
-            radioButtons[i]=new JRadioButton();
+            radioButtons[i] = new JRadioButton();
             radioButtons[i].setText(radioButtonsText[i]);
-        buttonGroup1.add(radioButtons[i]);
+            buttonGroup1.add(radioButtons[i]);
         }
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
