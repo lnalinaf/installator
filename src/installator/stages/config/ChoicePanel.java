@@ -17,12 +17,11 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
 
     private ChoiceStage<Integer> stage;
     javax.swing.GroupLayout layout;
-    private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup; 
+    private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
     private javax.swing.GroupLayout.ParallelGroup radioHorizontalGroup;
-    private javax.swing.GroupLayout.SequentialGroup allHorizontalGroup;  
-    private javax.swing.GroupLayout.ParallelGroup buttonVertcalGroup; 
+    private javax.swing.GroupLayout.SequentialGroup allHorizontalGroup;
+    private javax.swing.GroupLayout.ParallelGroup buttonVertcalGroup;
     private javax.swing.GroupLayout.SequentialGroup allVertcalGroup;
-
     private final int LEFT_BUTTON_GAP = 101;
     private final int WIDTH_BUTTON = 88;
     private final int HEIGHT_BUTTON = 25;
@@ -35,17 +34,18 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     /**
      * Creates new form ChoicePanel
      */
-    public ChoicePanel(ChoiceStage<Integer> stage, String name, String text, 
+    public ChoicePanel(ChoiceStage<Integer> stage, String name, String text,
             String[] radioButtonText) {
         radioButtons = new JRadioButton[radioButtonText.length];
         myInit(radioButtonText);
         setName(name);
         jLabel1.setText(text);
-        Enumeration<AbstractButton> en = buttonGroup1.getElements();
-        int i = 0;
-        while (en.hasMoreElements()) {
-            en.nextElement().setText(radioButtonText[i++]);
+        for (int i = 0; i < radioButtonText.length; i++) {
+            radioButtons[i]=new JRadioButton();
+            radioButtons[i].setText(text);
+        buttonGroup1.add(radioButtons[i]);
         }
+       
         this.stage = stage;
     }
 
@@ -58,7 +58,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -70,59 +69,58 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     @Override
     public Integer getData() {
         Enumeration<AbstractButton> en = buttonGroup1.getElements();
-        int i = 0;  
-        while(en.hasMoreElements()) {
-            if(en.nextElement().isSelected()) {
-                return new Integer(i); 
+        int i = 0;
+        while (en.hasMoreElements()) {
+            if (en.nextElement().isSelected()) {
+                return new Integer(i);
             }
             i++;
         }
         return null;
     }
 
-
     private void fillButtonGroup() {
         buttonHorizontalGroup
-            .addGap(0, LEFT_BUTTON_GAP, Short.MAX_VALUE)
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, WIDTH_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE);
+                .addGap(0, LEFT_BUTTON_GAP, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, WIDTH_BUTTON, javax.swing.GroupLayout.PREFERRED_SIZE);
         buttonVertcalGroup
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE);
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE);
     }
 
     private void fillAllGroup() {
         AbstractButton radBut;
         radioHorizontalGroup
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonHorizontalGroup);
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonHorizontalGroup);
         allVertcalGroup
                 .addContainerGap()
                 .addComponent(jLabel1);
         Enumeration<AbstractButton> en = buttonGroup1.getElements();
-        int i = 0;  
-        while(en.hasMoreElements()) {
+        int i = 0;
+        while (en.hasMoreElements()) {
             radBut = en.nextElement();
             radioHorizontalGroup.addComponent(radBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
             allVertcalGroup
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radBut);
-        }  
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(radBut);
+        }
         allVertcalGroup
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-            .addGroup(buttonVertcalGroup)
-            .addContainerGap();            
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                .addGroup(buttonVertcalGroup)
+                .addContainerGap();
         allHorizontalGroup
-            .addContainerGap()
-            .addGroup(radioHorizontalGroup)
-            .addContainerGap(); 
+                .addContainerGap()
+                .addGroup(radioHorizontalGroup)
+                .addContainerGap();
     }
 
-    private void myInit(String[] radioButtonsText){
+    private void myInit(String[] radioButtonsText) {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -159,12 +157,10 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         this.setLayout(layout);
 
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(allHorizontalGroup)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(allHorizontalGroup));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(allVertcalGroup)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(allVertcalGroup));
     }
 }
