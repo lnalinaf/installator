@@ -35,16 +35,16 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
      * Creates new form ChoicePanel
      */
     public ChoicePanel(ChoiceStage<Integer> stage, String name, String text,
-            String[] radioButtonText) {
-        radioButtons = new JRadioButton[radioButtonText.length];
-        myInit(radioButtonText);
+            String[] radioButtonsText) {
+        radioButtons = new JRadioButton[radioButtonsText.length];
+        myInit(radioButtonsText);
         setName(name);
         jLabel1.setText(text);
-        for (int i = 0; i < radioButtonText.length; i++) {
-            radioButtons[i]=new JRadioButton();
-            radioButtons[i].setText(text);
-        buttonGroup1.add(radioButtons[i]);
-        }
+//        for (int i = 0; i < radioButtonText.length; i++) {
+//            radioButtons[i]=new JRadioButton();
+//            radioButtons[i].setText(text);
+//        buttonGroup1.add(radioButtons[i]);
+//        }
        
         this.stage = stage;
     }
@@ -122,6 +122,11 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
 
     private void myInit(String[] radioButtonsText) {
         buttonGroup1 = new javax.swing.ButtonGroup();
+        for (int i = 0; i < radioButtonsText.length; i++) {
+            radioButtons[i]=new JRadioButton();
+            radioButtons[i].setText(radioButtonsText[i]);
+        buttonGroup1.add(radioButtons[i]);
+        }
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
