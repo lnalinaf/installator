@@ -61,7 +61,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         for (int i = 0; i < radioButtons.length; i++) {
             radioButtons[i].isSelected();
             return new Integer(i);
-
         }
         return null;
     }
