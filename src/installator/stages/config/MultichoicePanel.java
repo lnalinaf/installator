@@ -4,17 +4,14 @@
  */
 package installator.stages.config;
 
-import installator.ConfigStage;
-import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
-import javax.swing.JRadioButton;
 
 /**
  *
  * @author alina
  */
-public class MultichoicePanel<Integer> extends javax.swing.JPanel implements StagePanel<Integer[]> {
+public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<Integer[]> {
 
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
@@ -25,8 +22,8 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
     private final int LEFT_BUTTON_GAP = 101;
     private final int WIDTH_BUTTON = 88;
     private final int HEIGHT_BUTTON = 25;
-    private final JCheckBox[] checkboxes;
-    private MultichoiceStage<Integer> stage;
+    private final JCheckBox[] checkBoxes;
+    private MultichoiceStage<Integer[]> stage;
 
     //TODO 
     // 1)сделать обработчик нажатия на кнопку, в котором вызвать метод 
@@ -35,9 +32,9 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
     /**
      * Creates new form MultichoicePanel
      */
-    public MultichoicePanel(MultichoiceStage<Integer> stage, String name, String text,
+    public MultichoicePanel(MultichoiceStage<Integer[]> stage, String name, String text,
             String[] checkBoxText) {
-        checkboxes = new JCheckBox[checkBoxText.length];
+        checkBoxes = new JCheckBox[checkBoxText.length];
         myInit(checkBoxText);
         setName(name);
         jLabel1.setText(text);
@@ -63,21 +60,19 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
     }
 
     private void fillAllGroup() {
-        AbstractButton radBut;
+        AbstractButton checkBox;
         radioHorizontalGroup
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonHorizontalGroup);
         allVertcalGroup
                 .addContainerGap()
                 .addComponent(jLabel1);
-        Enumeration<AbstractButton> en = buttonGroup1.getElements();
-        int i = 0;
-        while (en.hasMoreElements()) {
-            radBut = en.nextElement();
-            radioHorizontalGroup.addComponent(radBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
+        for (int i = 0; i < checkBoxes.length; i++) {
+            checkBox = checkBoxes[i];
+            radioHorizontalGroup.addComponent(checkBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE);
             allVertcalGroup
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(radBut);
+                    .addComponent(checkBox);
         }
         allVertcalGroup
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
@@ -90,11 +85,9 @@ public class MultichoicePanel<Integer> extends javax.swing.JPanel implements Sta
     }
 
     private void myInit(String[] checkBoxText) {
-        buttonGroup1 = new javax.swing.ButtonGroup();
         for (int i = 0; i < checkBoxText.length; i++) {
-            checkboxes[i] = new JCheckBox();
-            checkboxes[i].setText(checkBoxText[i]);
-            buttonGroup1.add(checkboxes[i]);
+            checkBoxes[i] = new JCheckBox();
+            checkBoxes[i].setText(checkBoxText[i]);
         }
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
