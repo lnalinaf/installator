@@ -1,19 +1,34 @@
 package installator.stages.config;
 
 import installator.ConfigStage;
-import java.io.File;
+import javax.swing.JPanel;
 
-public class PathStage<String> extends ConfigStage<String>{
+public class PathStage extends ConfigStage<String>{
 
-    public File path(){return null;}
+    private String pathDirectory;
     
     public PathStage(String text, String question) {
         super(null,null);
     }
+    
+    public String path(){
+        return pathDirectory;
+    }
+    
+        
+    public void createPanel(JPanel panel) throws Exception {
+        if (panel != null) {
+            if (panel instanceof StagePanel) {
+                throw new Exception("");
+            }
+            this.panel = panel;
+        }
+        this.panel = new PathPanel(this, name, text);
+    }
 
     @Override
     public void setData(String data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pathDirectory = data;
     }
 
 }
