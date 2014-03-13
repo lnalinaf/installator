@@ -26,7 +26,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     private final int HEIGHT_BUTTON = 25;
     private final JRadioButton[] radioButtons;
 
-    
     /**
      * Creates new form ChoicePanel
      */
@@ -59,13 +58,9 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
 
     @Override
     public Integer getData() {
-        Enumeration<AbstractButton> en = buttonGroup1.getElements();
-        int i = 0;
-        while (en.hasMoreElements()) {
-            if (en.nextElement().isSelected()) {
-                return new Integer(i);
-            }
-            i++;
+        for (int i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].isSelected();
+            return new Integer(i);
         }
         return null;
     }

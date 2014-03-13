@@ -8,7 +8,7 @@ public class PathStage<String> extends ConfigStage<String>{
     public File path(){return null;}
     
     public PathStage(String text, String question) {
-        super(null, null);
+        super(null,null);
     }
 
     @Override

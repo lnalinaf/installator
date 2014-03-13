@@ -10,6 +10,8 @@ import installator.stages.config.ChoicePanel;
 import installator.stages.config.ChoiceStage;
 import installator.stages.config.MultichoicePanel;
 import installator.stages.config.MultichoiceStage;
+import installator.stages.config.PathPanel;
+import installator.stages.config.PathStage;
 import javax.swing.JPanel;
 
 /**
@@ -23,8 +25,8 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
-        MultichoiceStage stage = new MultichoiceStage("test", "TEST");
-        JPanel jPanel1 = new MultichoicePanel(stage, "test", "Выберите вариант установки", new String[] {"первый", "второй", "третий"});
+        PathStage stage = new PathStage<String>("test", "TEST");
+        JPanel jPanel1 = new PathPanel(stage, "test", "Выберите вариант установки");// new String[] {"первый", "второй", "третий"});
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
