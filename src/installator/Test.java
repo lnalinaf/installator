@@ -23,8 +23,8 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
-        СhoiceStage stage = new СhoiceStage<Integer>("test", "TEST");
-        JPanel jPanel1 = new СhoicePanel(stage, "test", "Выберите вариант установки", new String[] {"первый", "второй", "третий"});
+        ChoiceStage stage = new ChoiceStage<Integer>("test", "TEST");
+        JPanel jPanel1 = new ChoicePanel(stage, "test", "Выберите вариант установки", new String[] {"первый", "второй", "третий"});
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
