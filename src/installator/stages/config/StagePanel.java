@@ -6,8 +6,6 @@
 
 package installator.stages.config;
 
-import installator.ConfigStage;
-
 /**
  *
  * @author cfif11

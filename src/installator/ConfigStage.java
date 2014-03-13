@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 public abstract class ConfigStage<T> implements Callable<T>{
     
-    private String name;
-    private String text; 
-    private boolean visible;
-    private JPanel panel;
+    protected String name;
+    protected String text; 
+    protected boolean visible;
+    protected JPanel panel;
     protected ArrayList<T> data = new ArrayList<T>();
 
     @Override
@@ -22,6 +22,15 @@ public abstract class ConfigStage<T> implements Callable<T>{
     public ConfigStage(String name, String text) {
         this.name = name;
         this.text = text;
+    }
+    
+    public ConfigStage(JPanel panel, String name, String text) {
+        this(name, text);
+        if(panel instanceof StagePanel) 
+            this.panel = panel;
+        else 
+            throw new ClassCastException("panel is null");
+        this.panel = panel;
     }
     
     public JPanel getPanel() {

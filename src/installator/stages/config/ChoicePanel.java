@@ -4,7 +4,6 @@
  */
 package installator.stages.config;
 
-import installator.ConfigStage;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JRadioButton;
@@ -15,7 +14,7 @@ import javax.swing.JRadioButton;
  */
 public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Integer> {
 
-    private ChoiceStage<Integer> stage;
+    private ChoiceStage stage;
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
     private javax.swing.GroupLayout.ParallelGroup radioHorizontalGroup;
@@ -27,15 +26,13 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     private final int HEIGHT_BUTTON = 25;
     private final JRadioButton[] radioButtons;
 
-    //TODO 
-    // 1)сделать обработчик нажатия на кнопку, в котором вызвать метод 
-    //stage.setData(getData());
-    // 2)сделать метод setText который устанавливает переданный текст в метку
+    
     /**
      * Creates new form ChoicePanel
      */
-    public ChoicePanel(ChoiceStage<Integer> stage, String name, String text,
+    public ChoicePanel(ChoiceStage stage, String name, String text,
             String[] radioButtonsText) {
+        super();
         radioButtons = new JRadioButton[radioButtonsText.length];
         myInit(radioButtonsText);
         setName(name);
@@ -125,8 +122,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-
-
 
         jButton1.setText("Назад");
         jButton1.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
