@@ -57,7 +57,7 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
         fileChooser.setFileSelectionMode(fileChooser.DIRECTORIES_ONLY);
         if(fileChooser.showOpenDialog(null) != fileChooser.APPROVE_OPTION)
             return;
-        jTextField1.setText(fileChooser.getSelectedFile().getParent()+'/' + 
+        jTextField1.setText(fileChooser.getSelectedFile().getParent()+'\\' + 
         fileChooser.getSelectedFile().getName());
     }//GEN-LAST:event_jButton3ActionPerformed
 
