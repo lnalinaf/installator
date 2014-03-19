@@ -9,7 +9,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JRadioButton;
 
 /**
- *
+ * Панель единичного выбора из списка по умолчанию. 
  * @author alina
  */
 public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Integer> {
@@ -27,7 +27,11 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     private final JRadioButton[] radioButtons;
 
     /**
-     * Creates new form ChoicePanel
+     * Создается панелька по умолчанию. 
+     * @param stage ссылка на стадию, которая содержит данную панельку.
+     * @param name имя
+     * @param text вопрос, на который должен ответить пользователь
+     * @param radioButtonsText пункты списка
      */
     public ChoicePanel(ChoiceStage stage, String name, String text,
             String[] radioButtonsText) {
@@ -56,6 +60,10 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Возварщает номер выбранного элемента списка.
+     * @return номер выбранного элемента списка.
+     */
     @Override
     public Integer getData() {
         for (int i = 0; i < radioButtons.length; i++) {
@@ -64,7 +72,15 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         }
         return null;
     }
-
+    
+    @Override
+    public void setStage(ConfigStage<Integer> stage) {
+        if(stage instanceof ChoiceStage)
+            this.stage = (ChoiceStage)stage;
+        else 
+            throw new ClassCastException("stage does not extend ChoiceStage");
+    }
+    
     private void fillButtonGroup() {
         buttonHorizontalGroup
                 .addGap(0, LEFT_BUTTON_GAP, Short.MAX_VALUE)
@@ -152,4 +168,5 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(allVertcalGroup));
     }
+    
 }

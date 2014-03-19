@@ -4,23 +4,24 @@
  */
 package installator.stages.config;
 
-import installator.ConfigStage;
-import javax.swing.JLabel;
 
 /**
- *
+ * Стартовая панель
  * @author alina
  */
-public class StartPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
+public class StartPanel extends javax.swing.JPanel implements StagePanel<Object>{
     
-
+    private StartStage stage;
+    
     /**
-     * Creates new form NewJPanel
+     * Создается панелька по умолчанию
+     * @param name имя
+     * @param text текс приветствия
      */
-    public StartPanel() {
+    public StartPanel(String name, String text) {
         initComponents();
-                
-        
+        setName(name);
+        jLabel4.setText(text);
     }
 
     /**
@@ -49,27 +50,27 @@ public class StartPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(16, 16, 16))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(27, 27, 27))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -78,9 +79,21 @@ public class StartPanel<T> extends javax.swing.JPanel implements StagePanel<T>{
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Ничего не должны возвращать, поэтому возварщает {@code null}
+     * @return null
+     */
     @Override
-    public T getData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object getData() {
+        return null;
+    }
+
+    @Override
+    public void setStage(ConfigStage<Object> stage) {
+        if(stage instanceof StartStage)
+            this.stage = (StartStage)stage;
+        else 
+            throw new ClassCastException("stage does not extend StartStage");
     }
 
 }

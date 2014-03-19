@@ -10,7 +10,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 
 /**
- *
+ * Панель множественного выбора из списка по умолчанию.
  * @author alina
  */
 public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<Integer[]> {
@@ -25,10 +25,14 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
     private final int WIDTH_BUTTON = 88;
     private final int HEIGHT_BUTTON = 25;
     private final JCheckBox[] checkBoxes;
-    private final MultichoiceStage stage;
+    private MultichoiceStage stage;
 
     /**
-     * Creates new form MultichoicePanel
+     * Создается панелька по умолчанию. 
+     * @param stage ссылка на стадию, которая содержит данную панельку.
+     * @param name имя
+     * @param text вопрос, на который должен ответить пользователь
+     * @param radioButtonsText пункты списка
      */
     public MultichoicePanel(MultichoiceStage stage, String name, String text,
             String[] checkBoxText) {
@@ -139,6 +143,10 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Возварщает номера выбраных элементов списка.
+     * @return номера выбраных элементов списка
+     */
     @Override
     public Integer[] getData() {
         List<Integer> list = new ArrayList<Integer>();
@@ -147,5 +155,13 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
                 list.add(i);
         }
         return (Integer[])list.toArray();
+    }
+
+    @Override
+    public void setStage(ConfigStage<Integer[]> stage) {
+        if(stage instanceof MultichoiceStage)
+            this.stage = (MultichoiceStage)stage;
+        else 
+            throw new ClassCastException("stage does not extend MultichoiceStage");
     }
 }

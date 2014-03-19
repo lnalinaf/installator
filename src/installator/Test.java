@@ -25,8 +25,8 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
-        PathStage stage = new PathStage("test", "question");
-        JPanel jPanel1 = new PathPanel(stage, "test", "Выберите вариант установки");// new String[] {"первый", "второй", "третий"});
+        PathStage stage = new PathStage("test", "question", "default");
+        JPanel jPanel1 = new PathPanel(stage, "test", "question", "default");
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

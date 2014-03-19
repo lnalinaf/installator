@@ -1,34 +1,34 @@
 package installator.stages.config;
 
-import installator.ConfigStage;
 import javax.swing.JPanel;
 
+/**
+ * Стадия предназначенная для выбора пути установки. Основная полезная 
+ * информация при работе с пользователем: путь до папки в виде строки.
+ * @author cfif11
+ */
 public class PathStage extends ConfigStage<String>{
 
-    private String pathDirectory;
-    
-    public PathStage(String text, String question) {
-        super(null,null);
+    /**
+     * Создание стадии выбора пути с панелью разработчика.
+     * @param panel панель, созданная разработчиком. Обязательно должна быть 
+     * наследником {@link StagePanel}
+     * @param name имя 
+     */    
+    public PathStage(JPanel panel, String name) {
+        super(panel, name);
+        ((StagePanel)panel).setStage(this);
     }
     
-    public String path(){
-        return pathDirectory;
-    }
-    
-        
-    public void createPanel(JPanel panel) throws Exception {
-        if (panel != null) {
-            if (panel instanceof StagePanel) {
-                throw new Exception("");
-            }
-            this.panel = panel;
-        }
-        this.panel = new PathPanel(this, name, text);
-    }
-
-    @Override
-    public void setData(String data) {
-        pathDirectory = data;
+    /**
+     * Создание стадии выбора пути с панелью {@link PathPanel по умолчанию}.
+     * @param name имя
+     * @param text текст вопроса
+     * @param defaultPath путь по умолчанию
+     */
+    public PathStage(String name, String text, String defaultPath) {
+        super(name);
+        setPanel(new PathPanel(this, name, text, defaultPath));
     }
 
 }

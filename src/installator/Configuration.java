@@ -1,5 +1,6 @@
 package installator;
 
+import installator.stages.config.ConfigStage;
 import java.util.ArrayList;
 import java.util.Iterator;
 

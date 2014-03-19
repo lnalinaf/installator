@@ -1,53 +1,35 @@
 package installator.stages.config;
 
-import installator.ConfigStage;
 import javax.swing.JPanel;
 
-public class MultichoiceStage extends ConfigStage<Integer[]>{
-    
-    private Integer[] indexes;
-    private String[] itemsText;
-    private String[] itemsSelectedText;
-
-    public String[] items(){
-        return itemsSelectedText;
+/**
+ * Стадия предназначенная для множественного выбора из списка. Основная полезная 
+ * информация при работе с пользователем: массив выбранных пунктов из списка
+ * @author cfif11
+ */
+public class MultichoiceStage extends ConfigStage<Integer[]>{  
+       
+    /**
+     * Создание стадии множественного выбора из списка с панелью разработчика.
+     * @param panel панель, созданная разработчиком. Обязательно должна быть 
+     * наследником {@link StagePanel}
+     * @param name имя 
+     */
+    public MultichoiceStage(JPanel panel, String name) {
+        super(panel, name);
+        ((StagePanel)panel).setStage(this);
     }
     
-    public Integer[] itemIndexes(){
-        return indexes;
-    }
-    
-    public MultichoiceStage(String name, String text) {
-        super(name, text);
-    }
-    
+    /**
+     * Создание стадии множественного выбора из списка с панелью 
+     * {@link MultichoicePanel по умолчанию}.
+     * @param name имя
+     * @param text текст вопроса
+     * @param itemsText массив строк для пунктов списка
+     */
     public MultichoiceStage(String name, String text, String[] itemsText) {
-        super(name, text);
-        this.itemsText = itemsText;
+        super(name);
+        setPanel(new MultichoicePanel(this, name, text, itemsText));
     }
-    
-    public void setItemText(String[] itemsText) {
-        this.itemsText = itemsText;
-    }
-    
-    public void createPanel(JPanel panel) throws Exception {
-        if (panel != null) {
-            if (panel instanceof StagePanel) {
-                throw new Exception("");
-            }
-            this.panel = panel;
-        }
-        this.panel = new MultichoicePanel(this, name, text, itemsText);
-    }
-
-    @Override
-    public void setData(Integer[] data) {
-        indexes = data;
-        itemsSelectedText = new String[data.length];
-        for(int i = 0; i < data.length; i++) 
-            itemsSelectedText[i] = itemsText[data[i]];
-    }
-    
-    
-
+   
 }

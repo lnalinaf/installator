@@ -4,12 +4,8 @@
  */
 package installator.stages.config;
 
-import installator.ConfigStage;
-import javax.swing.AbstractButton;
-import javax.swing.JCheckBox;
-
 /**
- *
+ * Панель выора пути по умолчанию.
  * @author alina
  */
 public class PathPanel extends javax.swing.JPanel implements StagePanel<String> {
@@ -26,19 +22,23 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
     private final int WIDTH_BUTTON = 88;
     private final int HEIGHT_BUTTON = 25;
     private final int LEFT_BUTTON_GAP = 92;
-    private final PathStage stage;
+    private PathStage stage;
 
+    
     /**
-     * Creates new form PathPanel
+     * Создание панельки
+     * @param stage ссылка на стадию, которая содержит данную панельку
+     * @param name имя
+     * @param text текст вопроса
+     * @param defaultPath путь по умолчанию
      */
-
-    public PathPanel(PathStage stage, String name, String question) {
+    public PathPanel(PathStage stage, String name, String text, String defaultPath) {
         super();
         myInit();
         this.stage = stage;
         setName(name);
-        if(question != null)
-            jLabel1.setText(question);
+        jLabel1.setText(text);
+        jTextField1.setText(defaultPath);
     }
 
     /**
@@ -57,7 +57,7 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
         fileChooser.setFileSelectionMode(fileChooser.DIRECTORIES_ONLY);
         if(fileChooser.showOpenDialog(null) != fileChooser.APPROVE_OPTION)
             return;
-        jTextField1.setText(fileChooser.getSelectedFile().getParent()+'\\' + 
+        jTextField1.setText(fileChooser.getSelectedFile().getParent()+'/' + 
         fileChooser.getSelectedFile().getName());
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -70,9 +70,21 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Возвращает путь для установки
+     * @return путь для установки
+     */
     @Override
     public String getData() {
         return jTextField1.getText();
+    }
+    
+    @Override
+    public void setStage(ConfigStage<String> stage) {
+        if(stage instanceof PathStage)
+            this.stage = (PathStage)stage;
+        else 
+            throw new ClassCastException("stage does not extend PathStage");
     }
 
     private void fillButtonGroup() {
@@ -171,4 +183,5 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allVertcalGroup)
         );
     }
+
 }

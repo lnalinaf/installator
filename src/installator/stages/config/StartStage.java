@@ -1,20 +1,32 @@
 package installator.stages.config;
 
-import installator.ConfigStage;
 import javax.swing.JPanel;
 
 /**
- * Created by cfif11 on 04.03.14.
+ * Стартовая стадия (приветствие)
+ * @author cfif11
  */
-public class StartStage<T> extends ConfigStage<T> {
+public class StartStage extends ConfigStage<Object> {
 
-    public StartStage(String text, String question) {
-        super(text, question);
-                
+    /**
+     * Создание стартовой стадии с панелью разработчика.
+     * @param panel панель, созданная разработчиком. Обязательно должна быть 
+     * наследником {@link StagePanel}
+     * @param name имя  
+     */
+    public StartStage(JPanel panel, String name) {
+        super(panel, name);
+        ((StagePanel)panel).setStage(this);
     }
-
-    @Override
-    public void setData(T data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    /**
+     * Создание стартовой стадии с панелью {@link StartPanel по умолчанию}.
+     * @param name имя
+     * @param text текст
+     */
+    public StartStage(String name, String text) {
+        super(name);
+        setPanel(new StartPanel(name, text));
     }
+    
 }
