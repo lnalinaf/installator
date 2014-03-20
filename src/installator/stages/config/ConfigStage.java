@@ -1,7 +1,5 @@
 package installator.stages.config;
 
-import java.util.concurrent.Callable;
-import javax.swing.JPanel;
 import installator.Configuration;
 
 /**
@@ -11,7 +9,14 @@ import installator.Configuration;
  * @author cfif11
  * @param <T> Тип данных, которые возвращает стадия после своего завершения.
  */
-public class ConfigStage<T> implements Callable<T>{
+public class ConfigStage<T> {
+    
+    private final PanelNextListener DEFAULT = new PanelNextListener<T>() {
+        @Override
+        public void stageComplited(StageInteracting<T> panel) {
+            ConfigStage.this.loadData(panel.getData());
+        }
+    };
     
     protected final String name;
     
@@ -27,21 +32,15 @@ public class ConfigStage<T> implements Callable<T>{
 
     /**
      * Графическая панель, с помощью которой пользователь будет взаимодействовать
-     * с установщиком. Обязательно должна реализовывать интерфейс {@link StagePanel}
+     * с установщиком. Обязательно должна реализовывать интерфейс {@link StageInteracting}
      */
-    protected JPanel panel;
+    protected StagePanel<T> panel;
     
     /**
      * В данной переменной должны находится данные, которые можно получить от 
      * пользователя на данной стадии.
      */
     protected T data;
-
-    @Override
-    public T call() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-        //fail
-    }
 
     /**
      * Создаем стадию задавая имя и текст. Сразу после создания нужно задать панель
@@ -58,10 +57,12 @@ public class ConfigStage<T> implements Callable<T>{
      * @param panel панель, обязательно должна являть наследником {@link ConfigStage}
      * @param name имя
      */
-    public ConfigStage(JPanel panel, String name) {
+    public ConfigStage(StagePanel<T> panel, String name) {
         this(name);
-        if(panel instanceof StagePanel) 
+        if(panel instanceof StageInteracting) { 
             this.panel = panel;
+            this.panel.setNextListener(DEFAULT);
+        }
         else 
             throw new ClassCastException("panel does not implement StagePanel");
     }
@@ -70,9 +71,11 @@ public class ConfigStage<T> implements Callable<T>{
      * Устанавливаем панель, если не передали ее в конструкторе.
      * @param panel панель, обязательно должна являть наследником {@link ConfigStage}
      */
-    public void setPanel(JPanel panel) {
-        if(panel instanceof StagePanel) 
+    public void setPanel(StagePanel<T> panel) {
+        if(panel instanceof StageInteracting) {
             this.panel = panel;
+            this.panel.setNextListener(DEFAULT);
+        }
         else 
             throw new ClassCastException("panel does not implement StagePanel");
     }
@@ -82,7 +85,7 @@ public class ConfigStage<T> implements Callable<T>{
      * Возвращает графическую панель взаимодействия с пользователем
      * @return графическую панель взаимодействия с пользователем
      */
-    public JPanel getPanel() {
+    public StagePanel<T> getPanel() {
         return panel;
     }
     
@@ -90,8 +93,9 @@ public class ConfigStage<T> implements Callable<T>{
      * Устанавливаем данные с панели. Данный метод вызывается на панели.
      * @param data данные с панели.
      */
-    public void LoadData(T data) {
+    public void loadData(T data) {
         this.data = data;
+        System.out.println("DATA="+data);
     }
     
     /**

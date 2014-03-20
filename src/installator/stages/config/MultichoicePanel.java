@@ -13,7 +13,7 @@ import javax.swing.JCheckBox;
  * Панель множественного выбора из списка по умолчанию.
  * @author alina
  */
-public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<Integer[]> {
+public class MultichoicePanel extends javax.swing.JPanel implements StageInteracting<Integer[]> {
 
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
@@ -157,7 +157,6 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
         return (Integer[])list.toArray();
     }
 
-    @Override
     public void setStage(ConfigStage<Integer[]> stage) {
         if(stage instanceof MultichoiceStage)
             this.stage = (MultichoiceStage)stage;

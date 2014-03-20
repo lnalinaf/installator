@@ -9,7 +9,7 @@ package installator.stages.config;
  * Стартовая панель
  * @author alina
  */
-public class StartPanel extends javax.swing.JPanel implements StagePanel<Object>{
+public class StartPanel extends javax.swing.JPanel implements StageInteracting<Object>{
     
     private StartStage stage;
     
@@ -88,8 +88,7 @@ public class StartPanel extends javax.swing.JPanel implements StagePanel<Object>
         return null;
     }
 
-    @Override
-    public void setStage(ConfigStage<Object> stage) {
+  public void setStage(ConfigStage<Object> stage) {
         if(stage instanceof StartStage)
             this.stage = (StartStage)stage;
         else 

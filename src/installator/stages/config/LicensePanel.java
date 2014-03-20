@@ -8,7 +8,7 @@ package installator.stages.config;
  * Панель для вывода и принятия лицензионного соглашения
  * @author alina
  */
-public class LicensePanel extends javax.swing.JPanel implements StagePanel<Boolean>{
+public class LicensePanel extends javax.swing.JPanel implements StageInteracting<Boolean>{
 
     private LicenseStage stage;
     
@@ -127,7 +127,7 @@ public class LicensePanel extends javax.swing.JPanel implements StagePanel<Boole
         return jCheckBox1.isSelected();
     }
 
-    @Override
+
     public void setStage(ConfigStage<Boolean> stage) {
          if(stage instanceof LicenseStage)
             this.stage = (LicenseStage)stage;

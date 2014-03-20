@@ -8,7 +8,7 @@ package installator.stages.config;
  * Панель выора пути по умолчанию.
  * @author alina
  */
-public class PathPanel extends javax.swing.JPanel implements StagePanel<String> {
+public class PathPanel extends javax.swing.JPanel implements StageInteracting<String> {
 
     private javax.swing.GroupLayout layout;
     private javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
@@ -79,8 +79,7 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
         return jTextField1.getText();
     }
     
-    @Override
-    public void setStage(ConfigStage<String> stage) {
+   public void setStage(ConfigStage<String> stage) {
         if(stage instanceof PathStage)
             this.stage = (PathStage)stage;
         else 

@@ -11,12 +11,12 @@ public class StartStage extends ConfigStage<Object> {
     /**
      * Создание стартовой стадии с панелью разработчика.
      * @param panel панель, созданная разработчиком. Обязательно должна быть 
-     * наследником {@link StagePanel}
+     * наследником {@link StageInteracting}
      * @param name имя  
      */
-    public StartStage(JPanel panel, String name) {
+    public StartStage(StagePanel panel, String name) {
         super(panel, name);
-        ((StagePanel)panel).setStage(this);
+    //    ((StageInteracting)panel).setStage(this);
     }
     
     /**
@@ -26,7 +26,7 @@ public class StartStage extends ConfigStage<Object> {
      */
     public StartStage(String name, String text) {
         super(name);
-        setPanel(new StartPanel(name, text));
+    //    setPanel(new StartPanel(name, text));
     }
     
 }

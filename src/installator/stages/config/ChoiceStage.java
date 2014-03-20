@@ -12,12 +12,12 @@ public class ChoiceStage extends ConfigStage<Integer>{
     /**
      * Создание стадии единичного выбора из списка с панелью разработчика.
      * @param panel панель, созданная разработчиком. Обязательно должна быть 
-     * наследником {@link StagePanel}
+     * наследником {@link StageInteracting}
      * @param name имя 
      */
-    public ChoiceStage(JPanel panel, String name) {
+    public ChoiceStage(StagePanel panel, String name) {
         super(panel, name);
-        ((StagePanel)panel).setStage(this);
+       // ((StagePanel)panel).setStage(this);
     }
     
     /**

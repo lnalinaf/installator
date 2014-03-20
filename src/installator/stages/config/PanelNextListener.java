@@ -12,16 +12,8 @@ import javax.swing.JPanel;
  * 
  * @author agalkin
  */
-public class StagePanel<T> extends JPanel{
+public interface PanelNextListener<T> {
     
-    protected PanelNextListener<T> nextListener;
-
-    public StagePanel() {
-        super();
-    }   
-    
-   public void setNextListener(PanelNextListener<T> nextListner) {
-       this.nextListener = nextListner;
-   }
+    public void stageComplited(StageInteracting<T> panel);
     
 }

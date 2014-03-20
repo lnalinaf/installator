@@ -12,9 +12,9 @@ import javax.swing.JRadioButton;
  * Панель единичного выбора из списка по умолчанию. 
  * @author alina
  */
-public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Integer> {
+public class ChoicePanel extends StagePanel implements StageInteracting<Integer> {
 
-    private ChoiceStage stage;
+  //  private ChoiceStage stage;
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
     private javax.swing.GroupLayout.ParallelGroup radioHorizontalGroup;
@@ -40,7 +40,6 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         myInit(radioButtonsText);
         setName(name);
         jLabel1.setText(text);
-        this.stage = stage;
     }
 
     /**
@@ -52,6 +51,20 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.out.println("Panel Data =" + getData());
+        nextListener.stageComplited(this);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -67,18 +80,10 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
     @Override
     public Integer getData() {
         for (int i = 0; i < radioButtons.length; i++) {
-            radioButtons[i].isSelected();
-            return new Integer(i);
+            if(radioButtons[i].isSelected())
+                return new Integer(i);
         }
         return null;
-    }
-    
-    @Override
-    public void setStage(ConfigStage<Integer> stage) {
-        if(stage instanceof ChoiceStage)
-            this.stage = (ChoiceStage)stage;
-        else 
-            throw new ClassCastException("stage does not extend ChoiceStage");
     }
     
     private void fillButtonGroup() {
@@ -138,16 +143,31 @@ public class ChoicePanel extends javax.swing.JPanel implements StagePanel<Intege
         jButton1.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
         jButton1.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
         jButton1.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Далее");
         jButton2.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
         jButton2.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
         jButton2.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Отмена");
         jButton3.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
         jButton3.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
         jButton3.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         layout = new javax.swing.GroupLayout(this);
         buttonHorizontalGroup = layout.createSequentialGroup();
