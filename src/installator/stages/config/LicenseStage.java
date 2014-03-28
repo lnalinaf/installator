@@ -8,12 +8,12 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
     /**
      * Создание стадии принятия лицензии с панелью разработчика.
      * @param panel панель, созданная разработчиком. Обязательно должна быть 
-     * наследником {@link StagePanel}
+     * наследником {@link StageInteracting}
      * @param name имя 
      */
-    public LicenseStage(JPanel panel, String name) {
+    public LicenseStage(StagePanel panel, String name) {
         super(panel, name);
-        ((StagePanel)panel).setStage(this);
+      //  ((StageInteracting)panel).setStage(this);
     }   
     
     /**
@@ -25,7 +25,7 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
      */
     public LicenseStage(String name, String text, String question) {
         super(name);
-        setPanel(new LicensePanel(this, name, text, question));
+        //setPanel(new LicensePanel(this, name, text, question));
     }
     
 }

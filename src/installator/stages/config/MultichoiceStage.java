@@ -12,12 +12,12 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
     /**
      * Создание стадии множественного выбора из списка с панелью разработчика.
      * @param panel панель, созданная разработчиком. Обязательно должна быть 
-     * наследником {@link StagePanel}
+     * наследником {@link StageInteracting}
      * @param name имя 
      */
-    public MultichoiceStage(JPanel panel, String name) {
+    public MultichoiceStage(StagePanel panel, String name) {
         super(panel, name);
-        ((StagePanel)panel).setStage(this);
+       // ((StageInteracting)panel).setStage(this);
     }
     
     /**
@@ -29,7 +29,7 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
      */
     public MultichoiceStage(String name, String text, String[] itemsText) {
         super(name);
-        setPanel(new MultichoicePanel(this, name, text, itemsText));
+       // setPanel(new MultichoicePanel(this, name, text, itemsText));
     }
    
 }

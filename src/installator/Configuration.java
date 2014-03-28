@@ -1,10 +1,38 @@
 package installator;
 
+import installator.stages.config.BackListener;
+import installator.stages.config.CancelListener;
 import installator.stages.config.ConfigStage;
+import installator.stages.config.NextListener;
+import installator.stages.config.StageInteracting;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Configuration implements Iterable<ConfigStage> {
+    
+    private static final CancelListener DEFAULT_CANCELL_LISTENER = new CancelListener() {
+
+        @Override
+        public <T> void panelCanceled(StageInteracting<T> panel) {
+            System.out.println("Exit");
+        }
+    };
+    
+    private static final NextListener DEFAULT_NEXT_LISTENER = new NextListener() {
+
+        @Override
+        public <T> void panelComplited(StageInteracting<T> panel) {
+            System.out.println("Next");
+        }
+    };
+    
+    private static final BackListener DEFAULT_BACK_LISTENER = new BackListener() {
+
+        @Override
+        public <T> void panelReverted(StageInteracting<T> panel) {
+            System.out.println("Back");
+        }
+    };
   
     private ArrayList<ConfigStage> list;
     

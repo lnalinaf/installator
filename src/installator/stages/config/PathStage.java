@@ -12,12 +12,12 @@ public class PathStage extends ConfigStage<String>{
     /**
      * Создание стадии выбора пути с панелью разработчика.
      * @param panel панель, созданная разработчиком. Обязательно должна быть 
-     * наследником {@link StagePanel}
+     * наследником {@link StageInteracting}
      * @param name имя 
      */    
-    public PathStage(JPanel panel, String name) {
+    public PathStage(StagePanel panel, String name) {
         super(panel, name);
-        ((StagePanel)panel).setStage(this);
+    //    ((StageInteracting)panel).setStage(this);
     }
     
     /**
@@ -28,7 +28,7 @@ public class PathStage extends ConfigStage<String>{
      */
     public PathStage(String name, String text, String defaultPath) {
         super(name);
-        setPanel(new PathPanel(this, name, text, defaultPath));
+      //  setPanel(new PathPanel(this, name, text, defaultPath));
     }
 
 }

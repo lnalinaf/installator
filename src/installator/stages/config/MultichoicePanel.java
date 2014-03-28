@@ -13,7 +13,7 @@ import javax.swing.JCheckBox;
  * Панель множественного выбора из списка по умолчанию.
  * @author alina
  */
-public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<Integer[]> {
+public class MultichoicePanel extends StagePanel<Integer[]> {
 
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
@@ -25,7 +25,6 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
     private final int WIDTH_BUTTON = 88;
     private final int HEIGHT_BUTTON = 25;
     private final JCheckBox[] checkBoxes;
-    private MultichoiceStage stage;
 
     /**
      * Создается панелька по умолчанию. 
@@ -34,14 +33,13 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
      * @param text вопрос, на который должен ответить пользователь
      * @param radioButtonsText пункты списка
      */
-    public MultichoicePanel(MultichoiceStage stage, String name, String text,
+    public MultichoicePanel(String name, String text,
             String[] checkBoxText) {
         super();
         checkBoxes = new JCheckBox[checkBoxText.length];
         myInit(checkBoxText);
         setName(name);
         jLabel1.setText(text);
-        this.stage = stage;
     }
 
     private void fillButtonGroup() {
@@ -147,21 +145,13 @@ public class MultichoicePanel extends javax.swing.JPanel implements StagePanel<I
      * Возварщает номера выбраных элементов списка.
      * @return номера выбраных элементов списка
      */
-    @Override
-    public Integer[] getData() {
+    public void calcData() {
         List<Integer> list = new ArrayList<Integer>();
         for(int i = 0; i < checkBoxes.length; i++) {
             if(checkBoxes[i].isSelected())
                 list.add(i);
         }
-        return (Integer[])list.toArray();
+        data = (Integer[])list.toArray();
     }
 
-    @Override
-    public void setStage(ConfigStage<Integer[]> stage) {
-        if(stage instanceof MultichoiceStage)
-            this.stage = (MultichoiceStage)stage;
-        else 
-            throw new ClassCastException("stage does not extend MultichoiceStage");
-    }
 }

@@ -9,27 +9,46 @@ package installator.stages.config;
 import javax.swing.JPanel;
 
 /**
- * Интерфейс, от которого должны наследоваться все {@link JPanel панели} 
- * для {@link ConfigStage стадий}. Расширяет стандартные свинговские панели 
- * для связи графического интерфейса с логическими стадиями.
- * @author cfif11
- * @param <T> тип возвращаемого значения от панель
+ * 
+ * @author agalkin
  */
-public interface StagePanel<T> {
+public class StagePanel<T> extends JPanel implements StageInteracting<T>{
     
-    /**
-     * Метод возвращает полезную информацию взаимодействия пользователя с 
-     * графическим интерфейсом.
-     * @return 
-     */
-    public T getData();
+    protected NextListener nextListener;
+    protected CancelListener cancelListener;
+    protected BackListener backListener;
+    private boolean usable = true;
+    protected T data;
+
+    public StagePanel() {
+        super();
+    }   
     
-    /**
-     * Устанавливает ссылку на {@link ConfigStage стадию}, с которой
-     * взаимодействует панель. Используется, когда разработчик устанавливает
-     * свою панель для стадии.
-     * @param stage 
-     */
-    public void setStage(ConfigStage<T> stage);
+   public boolean isUsable() {
+       return usable;
+   }
+   
+   public void setUsable(boolean usable) {
+       this.usable = usable;
+   }
+   
+   public T getData() {
+       return data;
+   }
+
+    @Override
+    public void setNextListener(NextListener nextListener) {
+        this.nextListener = nextListener;
+    }
+
+    @Override
+    public void setBackListener(BackListener backListener) {
+        this.backListener = backListener;
+    }
+
+    @Override
+    public void setCancelListener(CancelListener cancelListener) {
+        this.cancelListener = cancelListener;
+    }
     
 }

@@ -8,9 +8,8 @@ package installator.stages.config;
  * Панель для вывода и принятия лицензионного соглашения
  * @author alina
  */
-public class LicensePanel extends javax.swing.JPanel implements StagePanel<Boolean>{
+public class LicensePanel extends StagePanel<Boolean> {
 
-    private LicenseStage stage;
     
     /**
      * Создается панелька по умолчанию. 
@@ -19,9 +18,8 @@ public class LicensePanel extends javax.swing.JPanel implements StagePanel<Boole
      * @param text текст лицензионного соглашения
      * @param question вопрос о согласии принять данное лицензионное соглашение
      */
-    public LicensePanel(LicenseStage stage, String name, String text, String question) {
+    public LicensePanel(String name, String text, String question) {
         initComponents();
-        this.stage = stage;
         jLabel2.setText(question);
         jTextPane1.setText(text);
     }
@@ -122,17 +120,8 @@ public class LicensePanel extends javax.swing.JPanel implements StagePanel<Boole
      * Возварщает принято ли лицензионное соглашение или нет..
      * @return {@code true} если лицензионноен соглашение принято
      */
-    @Override
-    public Boolean getData() {
-        return jCheckBox1.isSelected();
-    }
-
-    @Override
-    public void setStage(ConfigStage<Boolean> stage) {
-         if(stage instanceof LicenseStage)
-            this.stage = (LicenseStage)stage;
-        else 
-            throw new ClassCastException("stage does not extend LicenseStage");
+    public void calcData() {
+        data = jCheckBox1.isSelected();
     }
 
 }

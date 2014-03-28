@@ -8,7 +8,7 @@ package installator.stages.config;
  * Панель выора пути по умолчанию.
  * @author alina
  */
-public class PathPanel extends javax.swing.JPanel implements StagePanel<String> {
+public class PathPanel extends StagePanel<String> {
 
     private javax.swing.GroupLayout layout;
     private javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
@@ -22,7 +22,6 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
     private final int WIDTH_BUTTON = 88;
     private final int HEIGHT_BUTTON = 25;
     private final int LEFT_BUTTON_GAP = 92;
-    private PathStage stage;
 
     
     /**
@@ -32,10 +31,9 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
      * @param text текст вопроса
      * @param defaultPath путь по умолчанию
      */
-    public PathPanel(PathStage stage, String name, String text, String defaultPath) {
+    public PathPanel(String name, String text, String defaultPath) {
         super();
         myInit();
-        this.stage = stage;
         setName(name);
         jLabel1.setText(text);
         jTextField1.setText(defaultPath);
@@ -74,17 +72,8 @@ public class PathPanel extends javax.swing.JPanel implements StagePanel<String> 
      * Возвращает путь для установки
      * @return путь для установки
      */
-    @Override
-    public String getData() {
-        return jTextField1.getText();
-    }
-    
-    @Override
-    public void setStage(ConfigStage<String> stage) {
-        if(stage instanceof PathStage)
-            this.stage = (PathStage)stage;
-        else 
-            throw new ClassCastException("stage does not extend PathStage");
+    private void calcData() {
+        data = jTextField1.getText();
     }
 
     private void fillButtonGroup() {
