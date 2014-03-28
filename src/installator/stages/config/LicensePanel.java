@@ -124,6 +124,7 @@ public class LicensePanel extends StagePanel<Boolean> {
      */
     public void calcData() {
         data = jCheckBox1.isSelected();
+
     }
 
 }

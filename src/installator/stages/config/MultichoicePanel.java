@@ -16,6 +16,7 @@ import javax.swing.JCheckBox;
 public class MultichoicePanel extends StagePanel<Integer[]> {
 
 
+
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
     private javax.swing.GroupLayout.ParallelGroup radioHorizontalGroup;
@@ -153,5 +154,6 @@ public class MultichoicePanel extends StagePanel<Integer[]> {
                 list.add(i);
         }
         data = (Integer[])list.toArray();
+
     }
 }

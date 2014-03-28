@@ -17,6 +17,7 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
      */
     public MultichoiceStage(StagePanel panel, int index, String name) {
         super(panel, index, name);
+
        // ((StageInteracting)panel).setStage(this);
     }
     
@@ -29,6 +30,7 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
      */
     public MultichoiceStage(int index, String name, String text, String[] itemsText) {
         super(index, name);
+
        // setPanel(new MultichoicePanel(this, name, text, itemsText));
     }
    

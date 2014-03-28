@@ -23,6 +23,7 @@ public class ConfigStage<T> implements StageInteracting<T>{
 
     public ConfigStage(int index, String name) {
         this.index = index;
+
         this.name = name;
     }
 

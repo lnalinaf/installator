@@ -74,6 +74,7 @@ public class PathPanel extends StagePanel<String> {
      */
     private void calcData() {
         data = jTextField1.getText();
+
     }
 
     private void fillButtonGroup() {

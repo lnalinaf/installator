@@ -13,6 +13,7 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
      */
     public LicenseStage(StagePanel panel, int index, String name) {
         super(panel, index, name);
+
       //  ((StageInteracting)panel).setStage(this);
     }   
     
@@ -25,6 +26,7 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
      */
     public LicenseStage(int index, String name, String text, String question) {
         super(index, name);
+
         //setPanel(new LicensePanel(this, name, text, question));
     }
     
