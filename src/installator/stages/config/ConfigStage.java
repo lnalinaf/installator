@@ -11,7 +11,9 @@ import installator.Configuration;
  */
 public class ConfigStage<T> implements StageInteracting<T>{
 
+
     protected final String name;
+    protected int index;
 
     /**
      * Графическая панель, с помощью которой пользователь будет взаимодействовать
@@ -19,7 +21,8 @@ public class ConfigStage<T> implements StageInteracting<T>{
      */
     private StageInteracting<T> panel;
 
-    public ConfigStage(String name) {
+    public ConfigStage(int index, String name) {
+        this.index = index;
         this.name = name;
     }
 
@@ -29,8 +32,8 @@ public class ConfigStage<T> implements StageInteracting<T>{
      * @param panel панель, обязательно должна являть наследником {@link ConfigStage}
      * @param name имя
      */
-    public ConfigStage(StageInteracting<T> panel, String name) {
-        this(name);
+    public ConfigStage(StageInteracting<T> panel, int index, String name) {
+        this(index, name);
         this.panel = panel;
     }
 
@@ -53,7 +56,6 @@ public class ConfigStage<T> implements StageInteracting<T>{
     public StageInteracting<T> getPanel() {
         return panel;
     }
-
     /**
      * Возвращает данные взаимодействия с пользователем.
      * @return данные взаимодействия с пользователем.
@@ -88,5 +90,10 @@ public class ConfigStage<T> implements StageInteracting<T>{
     @Override
     public boolean isUsable() {
         return panel.isUsable();
+    }
+    
+    @Override
+    public int getIndex() {
+        return index;
     }
 }

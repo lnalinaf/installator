@@ -15,8 +15,8 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
      * наследником {@link StageInteracting}
      * @param name имя 
      */
-    public MultichoiceStage(StagePanel panel, String name) {
-        super(panel, name);
+    public MultichoiceStage(StagePanel panel, int index, String name) {
+        super(panel, index, name);
        // ((StageInteracting)panel).setStage(this);
     }
     
@@ -27,8 +27,8 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
      * @param text текст вопроса
      * @param itemsText массив строк для пунктов списка
      */
-    public MultichoiceStage(String name, String text, String[] itemsText) {
-        super(name);
+    public MultichoiceStage(int index, String name, String text, String[] itemsText) {
+        super(index, name);
        // setPanel(new MultichoicePanel(this, name, text, itemsText));
     }
    

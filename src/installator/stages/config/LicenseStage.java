@@ -11,8 +11,8 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
      * наследником {@link StageInteracting}
      * @param name имя 
      */
-    public LicenseStage(StagePanel panel, String name) {
-        super(panel, name);
+    public LicenseStage(StagePanel panel, int index, String name) {
+        super(panel, index, name);
       //  ((StageInteracting)panel).setStage(this);
     }   
     
@@ -23,8 +23,8 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
      * @param text текст лицензионного соглашения
      * @param question вопрос "на принятие лицензии"
      */
-    public LicenseStage(String name, String text, String question) {
-        super(name);
+    public LicenseStage(int index, String name, String text, String question) {
+        super(index, name);
         //setPanel(new LicensePanel(this, name, text, question));
     }
     

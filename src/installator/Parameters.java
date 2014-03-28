@@ -10,10 +10,14 @@ public class Parameters {
 
     public ArrayList<Object> parametersList;
 
-    Parameters() {
-        this.parametersList = null;
+    public void addParameter(Object obj) {
+        
     }
-
+    
+    public void addParameter(int index, Object obj) {
+        
+    }
+    
     public void addParameterChoiceStage(int id) {
         parametersList.add(id);
     }

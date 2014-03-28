@@ -15,6 +15,7 @@ import javax.swing.JCheckBox;
  */
 public class MultichoicePanel extends StagePanel<Integer[]> {
 
+
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
     private javax.swing.GroupLayout.ParallelGroup radioHorizontalGroup;
@@ -33,9 +34,9 @@ public class MultichoicePanel extends StagePanel<Integer[]> {
      * @param text вопрос, на который должен ответить пользователь
      * @param radioButtonsText пункты списка
      */
-    public MultichoicePanel(String name, String text,
+    public MultichoicePanel(int index, String name, String text,
             String[] checkBoxText) {
-        super();
+        super(index);
         checkBoxes = new JCheckBox[checkBoxText.length];
         myInit(checkBoxText);
         setName(name);
@@ -153,5 +154,4 @@ public class MultichoicePanel extends StagePanel<Integer[]> {
         }
         data = (Integer[])list.toArray();
     }
-
 }

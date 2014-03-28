@@ -25,8 +25,9 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
-        ChoiceStage stage = new ChoiceStage("test", "question", new String[] {"default", "two"});
+        ChoiceStage stage = new ChoiceStage(1, "test", "question", new String[] {"default", "two"});
         JPanel jPanel1 = (JPanel)stage.getPanel();
+
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

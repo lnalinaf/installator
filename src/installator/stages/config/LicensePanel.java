@@ -10,6 +10,7 @@ package installator.stages.config;
  */
 public class LicensePanel extends StagePanel<Boolean> {
 
+
     
     /**
      * Создается панелька по умолчанию. 
@@ -18,7 +19,8 @@ public class LicensePanel extends StagePanel<Boolean> {
      * @param text текст лицензионного соглашения
      * @param question вопрос о согласии принять данное лицензионное соглашение
      */
-    public LicensePanel(String name, String text, String question) {
+    public LicensePanel(int index, String name, String text, String question) {
+        super(index);
         initComponents();
         jLabel2.setText(question);
         jTextPane1.setText(text);

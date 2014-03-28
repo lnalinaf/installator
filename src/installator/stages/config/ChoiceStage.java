@@ -15,8 +15,8 @@ public class ChoiceStage extends ConfigStage<Integer>{
      * наследником {@link StageInteracting}
      * @param name имя 
      */
-    public ChoiceStage(StagePanel panel, String name) {
-        super(panel, name);
+    public ChoiceStage(int index, StagePanel panel, String name) {
+        super(panel, index, name);
        // ((StagePanel)panel).setStage(this);
     }
     
@@ -27,8 +27,8 @@ public class ChoiceStage extends ConfigStage<Integer>{
      * @param text текст вопроса
      * @param itemsText массив строк для пунктов списка
      */
-    public ChoiceStage(String name, String text, String[] itemsText) {
-        super(name);
-        setPanel(new ChoicePanel(name, text, itemsText));
+    public ChoiceStage(int index, String name, String text, String[] itemsText) {
+        super(index, name);
+        setPanel(new ChoicePanel(index, name, text, itemsText));
     }
 }

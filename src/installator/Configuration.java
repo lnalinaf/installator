@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 public class Configuration implements Iterable<ConfigStage> {
     
-    private static final CancelListener DEFAULT_CANCELL_LISTENER = new CancelListener() {
+    private final CancelListener DEFAULT_CANCELL_LISTENER = new CancelListener() {
 
         @Override
         public <T> void panelCanceled(StageInteracting<T> panel) {
@@ -18,15 +18,16 @@ public class Configuration implements Iterable<ConfigStage> {
         }
     };
     
-    private static final NextListener DEFAULT_NEXT_LISTENER = new NextListener() {
+    private final NextListener DEFAULT_NEXT_LISTENER = new NextListener() {
 
         @Override
         public <T> void panelComplited(StageInteracting<T> panel) {
             System.out.println("Next");
+            parameters.addParameter(panel.getIndex(), panel.getData());
         }
     };
     
-    private static final BackListener DEFAULT_BACK_LISTENER = new BackListener() {
+    private final BackListener DEFAULT_BACK_LISTENER = new BackListener() {
 
         @Override
         public <T> void panelReverted(StageInteracting<T> panel) {
@@ -35,6 +36,7 @@ public class Configuration implements Iterable<ConfigStage> {
     };
   
     private ArrayList<ConfigStage> list;
+    private Parameters parameters = new Parameters();
     
     Configuration(ArrayList<ConfigStage> stages) {
         this.list = stages;

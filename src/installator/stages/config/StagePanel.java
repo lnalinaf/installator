@@ -19,9 +19,11 @@ public class StagePanel<T> extends JPanel implements StageInteracting<T>{
     protected BackListener backListener;
     private boolean usable = true;
     protected T data;
+    protected int index;
 
-    public StagePanel() {
+    public StagePanel(int index) {
         super();
+        this.index = index;
     }   
     
    public boolean isUsable() {
@@ -51,4 +53,7 @@ public class StagePanel<T> extends JPanel implements StageInteracting<T>{
         this.cancelListener = cancelListener;
     }
     
+    public int getIndex() {
+        return index;
+    }
 }

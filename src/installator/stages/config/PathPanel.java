@@ -31,8 +31,8 @@ public class PathPanel extends StagePanel<String> {
      * @param text текст вопроса
      * @param defaultPath путь по умолчанию
      */
-    public PathPanel(String name, String text, String defaultPath) {
-        super();
+    public PathPanel(int index, String name, String text, String defaultPath) {
+        super(index);
         myInit();
         setName(name);
         jLabel1.setText(text);

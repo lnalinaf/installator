@@ -42,5 +42,6 @@ public interface StageInteracting<T> {
     
     public void setUsable(boolean usable);
     
+    public int getIndex();
     
 }
