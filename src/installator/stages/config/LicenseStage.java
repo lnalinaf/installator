@@ -1,8 +1,6 @@
 package installator.stages.config;
 
-import javax.swing.JPanel;
-
-public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
+public class LicenseStage extends ConfigStage<Boolean>{
 
     
     /**
@@ -27,7 +25,7 @@ public class LicenseStage<Boolean> extends ConfigStage<Boolean>{
     public LicenseStage(int index, String name, String text, String question) {
         super(index, name);
 
-        //setPanel(new LicensePanel(this, name, text, question));
+        setPanel(new LicensePanel(index, name, text, question));
     }
     
 }

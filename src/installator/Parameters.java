@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Parameters {
 
-    public ArrayList<Object> parametersList;
+    public ArrayList<Object> parametersList = new ArrayList<Object>();
 
     public void addParameter(Object obj) {
         parametersList.add(obj);

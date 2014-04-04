@@ -118,15 +118,16 @@ public class ChoicePanel extends StagePanel<Integer>{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        backListener.panelReverted(this);
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        calcData();
+        nextListener.panelComplited(this);
     }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        cancelListener.panelCanceled(this);
     }                                        
                                  
 

@@ -6,12 +6,13 @@
 
 package installator;
 
-import installator.stages.config.ChoicePanel;
 import installator.stages.config.ChoiceStage;
-import installator.stages.config.MultichoicePanel;
+import installator.stages.config.ConfigStage;
+import installator.stages.config.LicenseStage;
 import installator.stages.config.MultichoiceStage;
-import installator.stages.config.PathPanel;
 import installator.stages.config.PathStage;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -20,30 +21,41 @@ import javax.swing.JPanel;
  */
 public class Test extends javax.swing.JFrame {
 
+    public JPanel panel = new JPanel();
+    static Configuration config;
+    
+      private final ArrayList<ConfigStage> list = new ArrayList<ConfigStage>();
     /**
      * Creates new form Test
      */
     public Test() {
         initComponents();
-        ChoiceStage stage = new ChoiceStage(1, "test", "question", new String[] {"default", "two"});
-        JPanel jPanel1 = (JPanel)stage.getPanel();
+        list.add(0, new LicenseStage(0, "license", "I agree", "BLABLABLABLABLABLA\nBLABLABLA"));
+        list.add(1, new ChoiceStage(1, "choice", "question", new String[] {"default", "two"}));
+        list.add(2, new MultichoiceStage(2, "multichoice", "question", new String[] {"default", "one", "two"}));
+        list.add(3, new PathStage(3, "path", "Where", "C:/windows"));
+        //JPanel jPanel1 = (JPanel)stage.getPanel();
+ 
         
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        //pack();
+    }
+    
+    public void myInit() {
+        initComponents();
+               javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 300, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 200, Short.MAX_VALUE))
         );
-        
-        //pack();
     }
 
     /**
@@ -101,7 +113,10 @@ public class Test extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Test().setVisible(true);
+                Test test = new Test();
+                test.setVisible(true);
+                
+                config = new Configuration(test.list, (JFrame)test);
             }
         });
     }

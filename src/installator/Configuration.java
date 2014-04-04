@@ -7,6 +7,8 @@ import installator.stages.config.NextListener;
 import installator.stages.config.StageInteracting;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Configuration implements Iterable<ConfigStage> {
     
@@ -24,6 +26,15 @@ public class Configuration implements Iterable<ConfigStage> {
         public <T> void panelComplited(StageInteracting<T> panel) {
             System.out.println("Next");
             parameters.addParameter(panel.getIndex(), panel.getData());
+            if(panel.getIndex()+1 <= list.size())
+                currentStage = list.get(panel.getIndex() + 1);
+            else {
+                System.out.println("The End");
+                return;
+            }
+            setListeners();
+            form.panel = (JPanel)currentStage.getPanel();
+            form.myInit();
         }
     };
     
@@ -32,14 +43,33 @@ public class Configuration implements Iterable<ConfigStage> {
         @Override
         public <T> void panelReverted(StageInteracting<T> panel) {
             System.out.println("Back");
+            if(panel.getIndex() != 0) {
+                currentStage = list.get(panel.getIndex() - 1);
+                parameters.removeParameter(panel.getIndex() - 1);
+            } else {
+                System.out.println("the begin list");
+                return;
+            }
+            setListeners();
+            form.panel = (JPanel)currentStage.getPanel();
+            form.myInit();
         }
     };
   
     private ArrayList<ConfigStage> list;
     private Parameters parameters = new Parameters();
+    private final Test form;
+    private ConfigStage currentStage = null;
     
-    Configuration(ArrayList<ConfigStage> stages) {
+    Configuration(ArrayList<ConfigStage> stages, JFrame form) {
         this.list = stages;
+        currentStage = list.get(0);
+        System.out.println("1!!!!!!!!!!!!!!!!");
+        setListeners();
+        System.out.println("2!!!!!!!!!!!!!!!!");
+        this.form = (Test)form;
+        this.form.panel = (JPanel)currentStage.getPanel();
+        this.form.myInit();
     }
 
 
@@ -62,6 +92,12 @@ public class Configuration implements Iterable<ConfigStage> {
     
     public ArrayList<ConfigStage> getListStages(){
         return list;
+    }
+    
+    private void setListeners() {
+        currentStage.setBackListener(DEFAULT_BACK_LISTENER);
+        currentStage.setCancelListener(DEFAULT_CANCELL_LISTENER);
+        currentStage.setNextListener(DEFAULT_NEXT_LISTENER);
     }
 
 }

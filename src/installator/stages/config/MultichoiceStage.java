@@ -31,7 +31,7 @@ public class MultichoiceStage extends ConfigStage<Integer[]>{
     public MultichoiceStage(int index, String name, String text, String[] itemsText) {
         super(index, name);
 
-       // setPanel(new MultichoicePanel(this, name, text, itemsText));
+        setPanel(new MultichoicePanel(index, name, text, itemsText));
     }
    
 }

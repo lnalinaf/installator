@@ -28,7 +28,7 @@ public class PathStage extends ConfigStage<String>{
      */
     public PathStage(int index, String name, String text, String defaultPath) {
         super(index, name);
-      //  setPanel(new PathPanel(this, name, text, defaultPath));
+        setPanel(new PathPanel(index, name, text, defaultPath));
     }
 
 }
