@@ -6,11 +6,17 @@
 package installator.stages.config;
 
 /**
- *
- * @author s0912679
+ * Слушатель перехода на стадию назад
+ * @author Vera
  */
 public interface BackListener {
 
+    /**
+     *  Реализуется алгоритм перехода на стадию назад. Должен учитывать данные из
+     * {@link Parameters}
+     * @param <T>
+     * @param panel панель, которая содержится на стадии, с которой уходим
+     */
     public <T> void panelReverted(StageInteracting<T> panel);
 
 }

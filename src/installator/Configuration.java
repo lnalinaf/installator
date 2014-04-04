@@ -6,11 +6,19 @@ import installator.stages.config.ConfigStage;
 import installator.stages.config.NextListener;
 import installator.stages.config.StageInteracting;
 import java.util.ArrayList;
-import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Configuration implements Iterable<ConfigStage> {
+/**
+ * Класс, который содержит в себе всю информацию о конфигурации установки 
+ * (взаимодействие с пользователем) и сохраняет всю информацию в объект 
+ * {@link Parameters}. Класс инициализируется с помощью списка {@link ConfigStage}
+ * Переход от одной стадии к другой по умолчанию осуществляется по порядку.
+ * Если нужен некоторый алгоритмический переход, то нужно установить классу 
+ * {@link NextListener} и {@link BackListener}
+ * @author cfif11
+ */
+public class Configuration {
     
     private final CancelListener DEFAULT_CANCELL_LISTENER = new CancelListener() {
 
@@ -60,7 +68,14 @@ public class Configuration implements Iterable<ConfigStage> {
     private Parameters parameters = new Parameters();
     private final Test form;
     private ConfigStage currentStage = null;
+    private NextListener nextListener;
+    private BackListener backListener;
     
+    /**
+     * Создать Конфигурацию
+     * @param stages список стадий
+     * @param form тут будет некий интерфейс в будущем
+     */
     Configuration(ArrayList<ConfigStage> stages, JFrame form) {
         this.list = stages;
         currentStage = list.get(0);
@@ -71,25 +86,30 @@ public class Configuration implements Iterable<ConfigStage> {
         this.form.panel = (JPanel)currentStage.getPanel();
         this.form.myInit();
     }
-
-
-    @Override
-    public Iterator<ConfigStage> iterator() {
-        return list.listIterator();
-    }
     
-    public void addStage(ConfigStage stage) {
-        list.add(stage);
-    }
-    
+    /**
+     * Добавить стадию в некоторое место списка
+     * @param index
+     * @param stage 
+     */
     public void addStage(int index, ConfigStage stage) {
         list.add(index, stage);
     }
     
+    /**
+     * Получить стадию по индексу
+     * @param index
+     * @return 
+     */
     public ConfigStage getStage(int index) {
         return list.get(index);
     }
     
+    
+    /**
+     * Получить список стадий
+     * @return список стадий
+     */
     public ArrayList<ConfigStage> getListStages(){
         return list;
     }
@@ -98,6 +118,23 @@ public class Configuration implements Iterable<ConfigStage> {
         currentStage.setBackListener(DEFAULT_BACK_LISTENER);
         currentStage.setCancelListener(DEFAULT_CANCELL_LISTENER);
         currentStage.setNextListener(DEFAULT_NEXT_LISTENER);
+    }
+    
+    /**
+     * Установить слушатель для алгоритмов перехода между стадиями(кнопка вперед)
+     * @param nextListener 
+     */
+    public void setNextListener(NextListener nextListener) {
+        this.nextListener = nextListener;
+    }
+    
+    /**
+     * 
+     * Установить слушатель для алгоритмов перехода между стадиями(кнопка назад)
+     * @param backListener 
+     */
+    public void setNextListener(BackListener backListener) {
+        this.backListener = backListener;
     }
 
 }

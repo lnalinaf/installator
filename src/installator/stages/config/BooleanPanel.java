@@ -12,8 +12,8 @@
 package installator.stages.config;
 
 /**
- *
- * @author s0921212
+ * Панель логического выбора. 
+ * @author alina
  */
 public class BooleanPanel extends StagePanel<Boolean> {
     private javax.swing.GroupLayout layout;
@@ -29,7 +29,13 @@ public class BooleanPanel extends StagePanel<Boolean> {
     private final int HEIGHT_BUTTON = 25;
     private final int LEFT_BUTTON_GAP = 92;
 
-    public BooleanPanel(int index, String name, String text, Boolean b) {
+     /**
+     * Создается панелька по умолчанию. 
+     * @param index индефикатор.
+     * @param name имя
+     * @param text вопрос, на который должен ответить пользователь
+     */
+    public BooleanPanel(int index, String name, String text) {
         super(index);
         /*myInit();
         setName(name);

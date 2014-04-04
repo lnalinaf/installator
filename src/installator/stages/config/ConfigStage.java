@@ -12,7 +12,13 @@ import installator.Configuration;
 public class ConfigStage<T> implements StageInteracting<T>{
 
 
+    /**
+     * Имя
+     */
     protected final String name;
+    /**
+     * Индефикатор
+     */
     protected int index;
 
     /**
@@ -21,9 +27,13 @@ public class ConfigStage<T> implements StageInteracting<T>{
      */
     private StageInteracting<T> panel;
 
+    /**
+     * Создание стадии
+     * @param index Индефикатор
+     * @param name имя
+     */
     public ConfigStage(int index, String name) {
         this.index = index;
-
         this.name = name;
     }
 
@@ -61,6 +71,7 @@ public class ConfigStage<T> implements StageInteracting<T>{
      * Возвращает данные взаимодействия с пользователем.
      * @return данные взаимодействия с пользователем.
      */
+    @Override
     public T getData() {
         return panel.getData();
     }
@@ -69,6 +80,7 @@ public class ConfigStage<T> implements StageInteracting<T>{
      * Устанавливаем видимость(возможность использования) стадии.
      * @param usable {@code true} если стадия используется.
      */
+    @Override
     public void setUsable(boolean usable) {
         panel.setUsable(usable);
     }
