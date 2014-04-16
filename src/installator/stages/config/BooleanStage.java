@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package installator.stages.config;
 
 /**
@@ -10,7 +5,7 @@ package installator.stages.config;
  * информация при работе с пользователем: true or false
  * @author alina
  */
-public class BooleanStage  extends ConfigStage<Boolean>{
+public class BooleanStage extends ConfigStage<Boolean>{
 
      /**
      * Создание стадии логического выбора с панелью
@@ -19,7 +14,7 @@ public class BooleanStage  extends ConfigStage<Boolean>{
      * @param name имя
      * @param panel панель
      */
-    public BooleanStage(int index, StagePanel panel, String name) {
+    public BooleanStage(int index, StageInteracting<Boolean> panel, String name) {
         super(panel, index, name);
     }
     

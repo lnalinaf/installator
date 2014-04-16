@@ -4,13 +4,13 @@ import installator.Configuration;
 
 /**
  * Общий класс для стадии конфигурации. Из таких стадий должен состоять объект
- * {@link Configuration}. Стадия содержит основные поля "Имя" и "Панель".
- * Панель - графичиская компонента свинга, на которой все отображается.
+ * {@link Configuration}. Стадия содержит основные поля "Имя", "Индефикатор" и
+ * "Панель". Панель - наследник {@link StageInteracting}.
+ *
  * @author cfif11
  * @param <T> Тип данных, которые возвращает стадия после своего завершения.
  */
-public class ConfigStage<T> implements StageInteracting<T>{
-
+public class ConfigStage<T> implements StageInteracting<T> {
 
     /**
      * Имя
@@ -21,14 +21,11 @@ public class ConfigStage<T> implements StageInteracting<T>{
      */
     protected int index;
 
-    /**
-     * Графическая панель, с помощью которой пользователь будет взаимодействовать
-     * с установщиком. Обязательно должна реализовывать интерфейс {@link StageInteracting}
-     */
     private StageInteracting<T> panel;
 
     /**
      * Создание стадии
+     *
      * @param index Индефикатор
      * @param name имя
      */
@@ -39,8 +36,11 @@ public class ConfigStage<T> implements StageInteracting<T>{
 
     /**
      * Создаем стадию задавая имя и панель.
-     * @see #panel
-     * @param panel панель, обязательно должна являть наследником {@link ConfigStage}
+     *
+     * @see StageInteracting
+     * @param panel панель, обязательно должна являть наследником
+     * {@link StageInteracting}
+     * @param index индефикатор
      * @param name имя
      */
     public ConfigStage(StageInteracting<T> panel, int index, String name) {
@@ -50,7 +50,9 @@ public class ConfigStage<T> implements StageInteracting<T>{
 
     /**
      * Устанавливаем панель, если не передали ее в конструкторе.
-     * @param panel панель, обязательно должна являть наследником {@link ConfigStage}
+     *
+     * @param panel панель, обязательно должна являть наследником
+     * {@link StageInteracting}
      */
     public void setPanel(StageInteracting<T> panel) {
         if (panel != null) {
@@ -61,14 +63,17 @@ public class ConfigStage<T> implements StageInteracting<T>{
     }
 
     /**
-     * Возвращает графическую панель взаимодействия с пользователем
-     * @return графическую панель взаимодействия с пользователем
+     * Возвращает панель взаимодействия с пользователем
+     *
+     * @return панель взаимодействия с пользователем
      */
     public StageInteracting<T> getPanel() {
         return panel;
     }
+
     /**
      * Возвращает данные взаимодействия с пользователем.
+     *
      * @return данные взаимодействия с пользователем.
      */
     @Override
@@ -78,6 +83,7 @@ public class ConfigStage<T> implements StageInteracting<T>{
 
     /**
      * Устанавливаем видимость(возможность использования) стадии.
+     *
      * @param usable {@code true} если стадия используется.
      */
     @Override
@@ -104,7 +110,7 @@ public class ConfigStage<T> implements StageInteracting<T>{
     public boolean isUsable() {
         return panel.isUsable();
     }
-    
+
     @Override
     public int getIndex() {
         return index;

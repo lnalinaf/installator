@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package installator.stages.config;
 
 import java.util.ArrayList;
@@ -10,12 +6,12 @@ import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 
 /**
- * Панель множественного выбора из списка по умолчанию.
+ * Панель множественного выбора из списка по умолчанию. Используется по
+ * умолчанию для графического интерфейса {@link MultichoiceStage}
+ *
  * @author alina
  */
-public class MultichoicePanel extends StagePanel<Integer[]> {
-
-
+class MultichoicePanel extends StagePanel<Integer[]> {
 
     javax.swing.GroupLayout layout;
     private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
@@ -29,13 +25,14 @@ public class MultichoicePanel extends StagePanel<Integer[]> {
     private final JCheckBox[] checkBoxes;
 
     /**
-     * Создается панелька по умолчанию. 
-     * @param stage ссылка на стадию, которая содержит данную панельку.
+     * Создается панелька по умолчанию.
+     *
+     * @param index индефикатор
      * @param name имя
      * @param text вопрос, на который должен ответить пользователь
-     * @param radioButtonsText пункты списка
+     * @param checkBoxText пункты списка
      */
-    public MultichoicePanel(int index, String name, String text,
+    MultichoicePanel(int index, String name, String text,
             String[] checkBoxText) {
         super(index);
         checkBoxes = new JCheckBox[checkBoxText.length];
@@ -243,17 +240,14 @@ public class MultichoicePanel extends StagePanel<Integer[]> {
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * Возварщает номера выбраных элементов списка.
-     * @return номера выбраных элементов списка
-     */
-    public void calcData() {
+    private void calcData() {
         List<Integer> list = new ArrayList<Integer>();
-        for(int i = 0; i < checkBoxes.length; i++) {
-            if(checkBoxes[i].isSelected())
+        for (int i = 0; i < checkBoxes.length; i++) {
+            if (checkBoxes[i].isSelected()) {
                 list.add(i);
+            }
         }
-        data = (Integer[])list.toArray();
+        data = (Integer[]) list.toArray();
 
     }
 }

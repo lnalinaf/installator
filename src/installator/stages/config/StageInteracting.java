@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package installator.stages.config;
 
@@ -27,21 +22,41 @@ public interface StageInteracting<T> {
     public T getData();
     
     /**
-     * Устанавливает ссылку на {@link ConfigStage стадию}, с которой
-     * взаимодействует панель. Используется, когда разработчик устанавливает
-     * свою панель для стадии.
-     * @param stage 
+     * Устанавливает слушатель для обработки перехода к следующий стадии.
+     * @param nextListener слушатель {@link NextListener} 
      */
     public void setNextListener(NextListener nextListener);
     
+    /**
+     * Устанавливает слушатель для обработки перехода к предыдущей стадии.
+     * @param backListener слушатель {@link BackListener} 
+     */
     public void setBackListener(BackListener backListener);
    
+    /**
+     * Устанавливает слушатель для отмены установки.
+     * @param cancelListener слушатель {@link CancelListener} 
+     */
     public void setCancelListener(CancelListener cancelListener);
     
+     /**
+     * Проверяет видимость(возможность использования) стадии.
+     *
+     * @return {@code true} если стадия используется.
+     */
     public boolean isUsable();
     
+     /**
+     * Устанавливаем видимость(возможность использования) стадии.
+     *
+     * @param usable {@code true} если стадия используется.
+     */
     public void setUsable(boolean usable);
     
+    /**
+     * Возвращает индефикатор стадии.
+     * @return индефикатор
+     */
     public int getIndex();
     
 }

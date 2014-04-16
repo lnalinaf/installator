@@ -20,56 +20,13 @@ import javax.swing.JPanel;
  */
 public class Configuration {
     
-    private final CancelListener DEFAULT_CANCELL_LISTENER = new CancelListener() {
-
-        @Override
-        public <T> void panelCanceled(StageInteracting<T> panel) {
-            System.out.println("Exit");
-        }
-    };
-    
-    private final NextListener DEFAULT_NEXT_LISTENER = new NextListener() {
-
-        @Override
-        public <T> void panelComplited(StageInteracting<T> panel) {
-            System.out.println("Next");
-            parameters.addParameter(panel.getIndex(), panel.getData());
-            if(panel.getIndex()+1 <= list.size())
-                currentStage = list.get(panel.getIndex() + 1);
-            else {
-                System.out.println("The End");
-                return;
-            }
-            setListeners();
-            form.panel = (JPanel)currentStage.getPanel();
-            form.myInit();
-        }
-    };
-    
-    private final BackListener DEFAULT_BACK_LISTENER = new BackListener() {
-
-        @Override
-        public <T> void panelReverted(StageInteracting<T> panel) {
-            System.out.println("Back");
-            if(panel.getIndex() != 0) {
-                currentStage = list.get(panel.getIndex() - 1);
-                parameters.removeParameter(panel.getIndex() - 1);
-            } else {
-                System.out.println("the begin list");
-                return;
-            }
-            setListeners();
-            form.panel = (JPanel)currentStage.getPanel();
-            form.myInit();
-        }
-    };
-  
     private ArrayList<ConfigStage> list;
-    private Parameters parameters = new Parameters();
+    private final Parameters parameters = new Parameters();
     private final Test form;
     private ConfigStage currentStage = null;
-    private NextListener nextListener;
-    private BackListener backListener;
+    private NextListener nextListener = new DefaultNextListener();
+    private BackListener backListener = new DefaultBackListener();
+    private CancelListener cancelListener = new DefaultCancelListener();
     
     /**
      * Создать Конфигурацию
@@ -79,9 +36,7 @@ public class Configuration {
     Configuration(ArrayList<ConfigStage> stages, JFrame form) {
         this.list = stages;
         currentStage = list.get(0);
-        System.out.println("1!!!!!!!!!!!!!!!!");
         setListeners();
-        System.out.println("2!!!!!!!!!!!!!!!!");
         this.form = (Test)form;
         this.form.panel = (JPanel)currentStage.getPanel();
         this.form.myInit();
@@ -115,9 +70,9 @@ public class Configuration {
     }
     
     private void setListeners() {
-        currentStage.setBackListener(DEFAULT_BACK_LISTENER);
-        currentStage.setCancelListener(DEFAULT_CANCELL_LISTENER);
-        currentStage.setNextListener(DEFAULT_NEXT_LISTENER);
+        currentStage.setBackListener(backListener);
+        currentStage.setCancelListener(cancelListener);
+        currentStage.setNextListener(nextListener);
     }
     
     /**
@@ -133,8 +88,61 @@ public class Configuration {
      * Установить слушатель для алгоритмов перехода между стадиями(кнопка назад)
      * @param backListener 
      */
-    public void setNextListener(BackListener backListener) {
+    public void setBackListener(BackListener backListener) {
         this.backListener = backListener;
+    }
+    
+    /**
+     * Установить слушатель для алгоритмов завершения установки(кнопка отмена)
+     * @param cancelListener 
+     */
+    public void setCancelListener(CancelListener cancelListener) {
+        this.cancelListener = cancelListener;
+    }
+    
+    class DefaultNextListener implements NextListener {
+
+        @Override
+        public <T> void panelComplited(StageInteracting<T> panel) {
+            System.out.println("Next");
+            parameters.addParameter(panel.getIndex(), panel.getData());
+            if(panel.getIndex()+1 <= list.size())
+                currentStage = list.get(panel.getIndex() + 1);
+            else {
+                System.out.println("The End");
+                return;
+            }
+            setListeners();
+            form.panel = (JPanel)currentStage.getPanel();
+            form.myInit();
+        }
+    
+    }
+    
+    class DefaultBackListener implements BackListener {
+
+        @Override
+        public <T> void panelReverted(StageInteracting<T> panel) {
+            System.out.println("Back");
+            if(panel.getIndex() != 0) {
+                currentStage = list.get(panel.getIndex() - 1);
+                parameters.removeParameter(panel.getIndex() - 1);
+            } else {
+                System.out.println("the begin list");
+                return;
+            }
+            setListeners();
+            form.panel = (JPanel)currentStage.getPanel();
+            form.myInit();
+        }
+
+    }
+    
+    class DefaultCancelListener implements CancelListener {
+        @Override
+        public <T> void panelCanceled(StageInteracting<T> panel) {
+            System.out.println("Exit");
+        }
     }
 
 }

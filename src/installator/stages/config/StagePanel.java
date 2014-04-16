@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package installator.stages.config;
 
 import javax.swing.JPanel;
 
 /**
- * 
+ *
  * @author agalkin
  */
-public class StagePanel<T> extends JPanel implements StageInteracting<T>{
-    
+class StagePanel<T> extends JPanel implements StageInteracting<T> {
+
     protected NextListener nextListener;
     protected CancelListener cancelListener;
     protected BackListener backListener;
@@ -24,19 +18,22 @@ public class StagePanel<T> extends JPanel implements StageInteracting<T>{
     public StagePanel(int index) {
         super();
         this.index = index;
-    }   
-    
-   public boolean isUsable() {
-       return usable;
-   }
-   
-   public void setUsable(boolean usable) {
-       this.usable = usable;
-   }
-   
-   public T getData() {
-       return data;
-   }
+    }
+
+    @Override
+    public boolean isUsable() {
+        return usable;
+    }
+
+    @Override
+    public void setUsable(boolean usable) {
+        this.usable = usable;
+    }
+
+    @Override
+    public T getData() {
+        return data;
+    }
 
     @Override
     public void setNextListener(NextListener nextListener) {
@@ -52,7 +49,8 @@ public class StagePanel<T> extends JPanel implements StageInteracting<T>{
     public void setCancelListener(CancelListener cancelListener) {
         this.cancelListener = cancelListener;
     }
-    
+
+    @Override
     public int getIndex() {
         return index;
     }
