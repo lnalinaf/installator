@@ -5,6 +5,8 @@ import installator.stages.config.CancelListener;
 import installator.stages.config.ConfigStage;
 import installator.stages.config.NextListener;
 import installator.stages.config.StageInteracting;
+
+import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +24,7 @@ public class Configuration {
     
     private ArrayList<ConfigStage> list;
     private final Parameters parameters = new Parameters();
-    private final Test form;
+    private JFrame form;
     private ConfigStage currentStage = null;
     private NextListener nextListener = new DefaultNextListener();
     private BackListener backListener = new DefaultBackListener();
@@ -31,15 +33,18 @@ public class Configuration {
     /**
      * Создать Конфигурацию
      * @param stages список стадий
-     * @param form тут будет некий интерфейс в будущем
+     * @param isGUI использовать GUI режим?
      */
-    Configuration(ArrayList<ConfigStage> stages, JFrame form) {
+    Configuration(ArrayList<ConfigStage> stages, boolean isGUI) {
         this.list = stages;
         currentStage = list.get(0);
         setListeners();
-        this.form = (Test)form;
-        this.form.panel = (JPanel)currentStage.getPanel();
-        this.form.myInit();
+        form = new TestIter();
+        form.getContentPane().add((JPanel)stages.get(0).getPanel(), BorderLayout.CENTER);
+
+        form.setVisible(true);
+        /*this.form.panel = (JPanel)currentStage.getPanel();
+        this.form.myInit();*/
     }
     
     /**
@@ -113,8 +118,7 @@ public class Configuration {
                 return;
             }
             setListeners();
-            form.panel = (JPanel)currentStage.getPanel();
-            form.myInit();
+            form.add((JPanel)currentStage.getPanel());
         }
     
     }
@@ -132,8 +136,7 @@ public class Configuration {
                 return;
             }
             setListeners();
-            form.panel = (JPanel)currentStage.getPanel();
-            form.myInit();
+            form.add((JPanel)currentStage.getPanel());
         }
 
     }
