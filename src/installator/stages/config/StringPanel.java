@@ -29,9 +29,9 @@ class StringPanel extends StagePanel<String> {
      * @param defaultAnswer путь по умолчанию
      */
     StringPanel(int index, String name, String text, String defaultAnswer) {
-        super(index);
+        super();
         myInit();
-        setName(name);
+       // setName(name);
         jLabel1.setText(text);
         jTextField1.setText(defaultAnswer);
         initComponents();
@@ -75,7 +75,7 @@ class StringPanel extends StagePanel<String> {
                 .addContainerGap();
     }
 
-    private void myInit() {
+    private void myInit() {/*
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -127,12 +127,12 @@ class StringPanel extends StagePanel<String> {
                 .addGroup(allHorizontalGroup));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allVertcalGroup));
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allVertcalGroup));*/
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {/*
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -214,7 +214,7 @@ class StringPanel extends StagePanel<String> {
                     .addComponent(jButton2)
                     .addComponent(jButton4))
                 .addGap(22, 22, 22))
-        );
+        );*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -249,5 +249,10 @@ class StringPanel extends StagePanel<String> {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+
+    @Override
+    protected void init() {
+
+    }
     // End of variables declaration//GEN-END:variables
 }

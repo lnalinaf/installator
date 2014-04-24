@@ -9,7 +9,7 @@ package installator.stages.config;
 class LicensePanel extends StagePanel<Boolean> {
 
     LicensePanel(int index, String name, String text, String question) {
-        super(index);
+        super();
         initComponents();
         jLabel2.setText(question);
         jTextPane1.setText(text);
@@ -60,7 +60,7 @@ class LicensePanel extends StagePanel<Boolean> {
 
         jLabel2.setText("jLabel2");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+       /* javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +104,7 @@ class LicensePanel extends StagePanel<Boolean> {
                         .addComponent(jButton2)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-        );
+        );*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -135,4 +135,8 @@ class LicensePanel extends StagePanel<Boolean> {
         data = jCheckBox1.isSelected();
     }
 
+    @Override
+    protected void init() {
+
+    }
 }

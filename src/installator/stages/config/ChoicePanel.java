@@ -25,10 +25,10 @@ class ChoicePanel extends StagePanel<Integer> {
 
     ChoicePanel(int index, String name, String text,
             String[] radioButtonsText) {
-        super(index);
+        super();
         radioButtons = new JRadioButton[radioButtonsText.length];
         myInit(radioButtonsText);
-        setName(name);
+       // setName(name);
         jLabel1.setText(text);
     }
 
@@ -71,7 +71,7 @@ class ChoicePanel extends StagePanel<Integer> {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+       /* javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +99,7 @@ class ChoicePanel extends StagePanel<Integer> {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-        );
+        );*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ class ChoicePanel extends StagePanel<Integer> {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE);
     }
 
-    private void fillAllGroup() {
+    private void fillAllGroup() {/*
         AbstractButton radBut;
         radioHorizontalGroup
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,10 +171,10 @@ class ChoicePanel extends StagePanel<Integer> {
         allHorizontalGroup
                 .addContainerGap()
                 .addGroup(radioHorizontalGroup)
-                .addContainerGap();
+                .addContainerGap();*/
     }
 
-    private void myInit(String[] radioButtonsText) {
+    private void myInit(String[] radioButtonsText) {/*
         buttonGroup1 = new javax.swing.ButtonGroup();
         for (int i = 0; i < radioButtonsText.length; i++) {
             radioButtons[i] = new JRadioButton();
@@ -233,7 +233,11 @@ class ChoicePanel extends StagePanel<Integer> {
                 .addGroup(allHorizontalGroup));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(allVertcalGroup));
+                .addGroup(allVertcalGroup));*/
     }
 
+    @Override
+    protected void init() {
+
+    }
 }

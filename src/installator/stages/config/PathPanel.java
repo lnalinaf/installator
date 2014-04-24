@@ -29,16 +29,16 @@ class PathPanel extends StagePanel<String> {
      * @param defaultPath путь по умолчанию
      */
     PathPanel(int index, String name, String text, String defaultPath) {
-        super(index);
+        super();
         myInit();
-        setName(name);
+      //  setName(name);
         jLabel1.setText(text);
         jTextField1.setText(defaultPath);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() {/*
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -116,7 +116,7 @@ class PathPanel extends StagePanel<String> {
                     .addComponent(jButton2)
                     .addComponent(jButton1))
                 .addContainerGap())
-        );
+        );*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -193,7 +193,7 @@ class PathPanel extends StagePanel<String> {
     }
 
     private void myInit() {
-        jButton1 = new javax.swing.JButton();
+       /* jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -248,7 +248,11 @@ class PathPanel extends StagePanel<String> {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allVertcalGroup)
-        );
+        );*/
     }
 
+    @Override
+    protected void init() {
+
+    }
 }

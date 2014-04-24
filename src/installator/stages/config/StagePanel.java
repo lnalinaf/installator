@@ -1,13 +1,15 @@
 package installator.stages.config;
 
-import javax.swing.JPanel;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *
  * @author agalkin
  */
-class StagePanel<T> extends JPanel implements StageInteracting<T> {
+abstract class StagePanel<T> implements StageInteracting<T> {
 
+    private static final AtomicInteger STAGE_NUMERATOR = new AtomicInteger();
     protected NextListener nextListener;
     protected CancelListener cancelListener;
     protected BackListener backListener;
@@ -15,9 +17,9 @@ class StagePanel<T> extends JPanel implements StageInteracting<T> {
     protected T data;
     protected int index;
 
-    public StagePanel(int index) {
-        super();
-        this.index = index;
+    public StagePanel() {
+        init();
+        this.index = STAGE_NUMERATOR.getAndIncrement();
     }
 
     @Override
@@ -54,4 +56,6 @@ class StagePanel<T> extends JPanel implements StageInteracting<T> {
     public int getIndex() {
         return index;
     }
+
+    protected abstract void init();
 }

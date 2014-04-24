@@ -1,10 +1,6 @@
 package installator;
 
-import installator.stages.config.BackListener;
-import installator.stages.config.CancelListener;
-import installator.stages.config.ConfigStage;
-import installator.stages.config.NextListener;
-import installator.stages.config.StageInteracting;
+import installator.stages.config.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,7 +20,7 @@ public class Configuration {
     
     private ArrayList<ConfigStage> list;
     private final Parameters parameters = new Parameters();
-    private JFrame form;
+    private TestIter form;
     private ConfigStage currentStage = null;
     private NextListener nextListener = new DefaultNextListener();
     private BackListener backListener = new DefaultBackListener();
@@ -40,7 +36,7 @@ public class Configuration {
         currentStage = list.get(0);
         setListeners();
         form = new TestIter();
-        form.getContentPane().add((JPanel)stages.get(0).getPanel(), BorderLayout.CENTER);
+        //form.getContentPane().add(new LicensePanelNew().panel1);
 
         form.setVisible(true);
         /*this.form.panel = (JPanel)currentStage.getPanel();

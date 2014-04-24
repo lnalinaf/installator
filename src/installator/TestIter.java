@@ -13,7 +13,8 @@ public class TestIter extends JFrame {
 
     TestIter() {
         super();
-
+        Dimension d = new Dimension(800, 600);
+        setMinimumSize(d);
         button1.setText("Button1");
         setContentPane(panel);
         pack();
@@ -27,7 +28,7 @@ public class TestIter extends JFrame {
     }
 
     private JPanel panel;
-    private JButton button1;
+    JButton button1;
 
 
     {

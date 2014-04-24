@@ -9,7 +9,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="a444e" class="javax.swing.JButton" binding="button1" default-binding="true">
+      <component id="8afbb" class="javax.swing.JButton" binding="button1" default-binding="true">
         <constraints border-constraint="North"/>
         <properties>
           <text value="Button"/>

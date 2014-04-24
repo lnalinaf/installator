@@ -20,7 +20,7 @@ class BooleanPanel extends StagePanel<Boolean> {
     private final int LEFT_BUTTON_GAP = 92;
 
     BooleanPanel(int index, String name, String text) {
-        super(index);
+        super();
         /*myInit();
          setName(name);
          jLabel1.setText(text);
@@ -96,7 +96,7 @@ class BooleanPanel extends StagePanel<Boolean> {
 
         jScrollPane1.setViewportView(jTextPane1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+       /* javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ class BooleanPanel extends StagePanel<Boolean> {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addGap(20, 20, 20))
-        );
+        );*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -166,5 +166,10 @@ class BooleanPanel extends StagePanel<Boolean> {
 
     private void calcData() {
         data = jCheckBox1.isSelected();
+    }
+
+    @Override
+    protected void init() {
+
     }
 }

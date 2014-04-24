@@ -34,10 +34,10 @@ class MultichoicePanel extends StagePanel<Integer[]> {
      */
     MultichoicePanel(int index, String name, String text,
             String[] checkBoxText) {
-        super(index);
+        super();
         checkBoxes = new JCheckBox[checkBoxText.length];
         myInit(checkBoxText);
-        setName(name);
+       // setName(name);
         jLabel1.setText(text);
     }
 
@@ -80,7 +80,7 @@ class MultichoicePanel extends StagePanel<Integer[]> {
                 .addContainerGap();
     }
 
-    private void myInit(String[] checkBoxText) {
+    private void myInit(String[] checkBoxText) {/*
         for (int i = 0; i < checkBoxText.length; i++) {
             checkBoxes[i] = new JCheckBox();
             checkBoxes[i].setText(checkBoxText[i]);
@@ -122,7 +122,7 @@ class MultichoicePanel extends StagePanel<Integer[]> {
                 .addGroup(allHorizontalGroup));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(allVertcalGroup));
+                .addGroup(allVertcalGroup));*/
     }
 
     /**
@@ -132,7 +132,7 @@ class MultichoicePanel extends StagePanel<Integer[]> {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+/*
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
@@ -214,7 +214,7 @@ class MultichoicePanel extends StagePanel<Integer[]> {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addContainerGap())
-        );
+        );*/
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -248,6 +248,11 @@ class MultichoicePanel extends StagePanel<Integer[]> {
             }
         }
         data = (Integer[]) list.toArray();
+
+    }
+
+    @Override
+    protected void init() {
 
     }
 }
