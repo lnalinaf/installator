@@ -2,6 +2,8 @@ package installator.stages.config;
 
 import installator.Configuration;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Общий класс для стадии конфигурации. Из таких стадий должен состоять объект
  * {@link Configuration}. Стадия содержит основные поля "Имя", "Индефикатор" и
@@ -13,53 +15,16 @@ import installator.Configuration;
 public class ConfigStage<T> implements StageInteracting<T> {
 
     /**
-     * Имя
-     */
-    protected final String name;
-    /**
      * Индефикатор
      */
     protected int index;
 
-    private StageInteracting<T> panel;
+    private static final AtomicInteger STAGE_NUMERATOR = new AtomicInteger();
 
-    /**
-     * Создание стадии
-     *
-     * @param index Индефикатор
-     * @param name имя
-     */
-    public ConfigStage(int index, String name) {
-        this.index = index;
-        this.name = name;
-    }
+    private StagePanel<T> panel;
 
-    /**
-     * Создаем стадию задавая имя и панель.
-     *
-     * @see StageInteracting
-     * @param panel панель, обязательно должна являть наследником
-     * {@link StageInteracting}
-     * @param index индефикатор
-     * @param name имя
-     */
-    public ConfigStage(StageInteracting<T> panel, int index, String name) {
-        this(index, name);
-        this.panel = panel;
-    }
-
-    /**
-     * Устанавливаем панель, если не передали ее в конструкторе.
-     *
-     * @param panel панель, обязательно должна являть наследником
-     * {@link StageInteracting}
-     */
-    public void setPanel(StageInteracting<T> panel) {
-        if (panel != null) {
-            this.panel = panel;
-        } else {
-            throw new NullPointerException("panel is null");
-        }
+    public ConfigStage() {
+        this.index = STAGE_NUMERATOR.getAndIncrement();
     }
 
     /**
@@ -67,7 +32,7 @@ public class ConfigStage<T> implements StageInteracting<T> {
      *
      * @return панель взаимодействия с пользователем
      */
-    public StageInteracting<T> getPanel() {
+    public StagePanel<T> getPanel() {
         return panel;
     }
 
@@ -79,6 +44,10 @@ public class ConfigStage<T> implements StageInteracting<T> {
     @Override
     public T getData() {
         return panel.getData();
+    }
+
+    protected void setPanel(StagePanel<T> panel) {
+        this.panel = panel;
     }
 
     /**

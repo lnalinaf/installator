@@ -21,7 +21,7 @@ public class StringStage extends ConfigStage<String> {
      * @param name имя
      */
     StringStage(int index, StageInteracting<String> panel, String name) {
-        super(panel, index, name);
+      //  super(panel, index, name);
     }
 
     /**
@@ -34,7 +34,7 @@ public class StringStage extends ConfigStage<String> {
      * @param defaultAnswer ответ по умолчанию
      */
     public StringStage(int index, String name, String question, String defaultAnswer) {
-        super(index, name);
+      //  super(index, name);
         setPanel(new StringPanel(index, name, question, defaultAnswer));
     }
 }

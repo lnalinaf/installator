@@ -4,26 +4,36 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by agalkin on 24.04.2014.
+ * Created by cfif11 on 25.04.14.
  */
-class LicensePanelNew extends StagePanel<Boolean> {
+class ChoicePanelNew extends StagePanel<Integer> {
     private JPanel panel1;
-    private JCheckBox checkBox1;
-    private JTextPane textPane1;
     private JButton button1;
     private JButton button2;
     private JButton button3;
-    private JLabel label1;
-    private JLabel label2;
+    private JRadioButton[] radioButtons;
+    private ButtonGroup buttonGroup = new ButtonGroup();
+    private JLabel label;
+    private JPanel panel2;
 
-    LicensePanelNew(int index, String text, String question) {
+    ChoicePanelNew(int index, String text, String[] radioButtonsText) {
         super(index);
         init();
         panel1.setSize(400, 300);
-        label2.setText(question);
-        textPane1.setText(text);
+        label.setText(text);
+        radioButtons = new JRadioButton[radioButtonsText.length];
+        GridBagConstraints gbc;
+        for (int i = 0; i < radioButtonsText.length; i++) {
+            radioButtons[i] = new JRadioButton();
+            radioButtons[i].setText(radioButtonsText[i]);
+            gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = i + 1;
+            gbc.anchor = GridBagConstraints.WEST;
+            panel2.add(radioButtons[i], gbc);
+            buttonGroup.add(radioButtons[i]);
+        }
     }
-
 
     @Override
     public JPanel getGUI() {
@@ -32,16 +42,17 @@ class LicensePanelNew extends StagePanel<Boolean> {
 
     @Override
     protected void init() {
-        label1.setText("Лицензионное соглашение");
         button1.setText("Назад");
         button2.setText("Вперед");
         button3.setText("Отмена");
-        textPane1.setText("Принять");
     }
 
     @Override
     protected void calcData() {
-        data = checkBox1.isSelected();
+        for (int i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].isSelected())
+                data = new Integer(i);
+        }
     }
 
     {
@@ -61,18 +72,20 @@ class LicensePanelNew extends StagePanel<Boolean> {
     private void $$$setupUI$$$() {
         panel1 = new JPanel();
         panel1.setLayout(new BorderLayout(0, 0));
-        final JPanel panel2 = new JPanel();
-        panel2.setLayout(new BorderLayout(0, 0));
-        panel1.add(panel2, BorderLayout.SOUTH);
-        label2 = new JLabel();
-        label2.setText("Label");
-        panel2.add(label2, BorderLayout.CENTER);
-        checkBox1 = new JCheckBox();
-        checkBox1.setText("CheckBox");
-        panel2.add(checkBox1, BorderLayout.EAST);
+        panel2 = new JPanel();
+        panel2.setLayout(new GridBagLayout());
+        panel1.add(panel2, BorderLayout.WEST);
+        label = new JLabel();
+        label.setText("Label");
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        panel2.add(label, gbc);
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new BorderLayout(0, 0));
-        panel2.add(panel3, BorderLayout.SOUTH);
+        panel1.add(panel3, BorderLayout.SOUTH);
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panel3.add(panel4, BorderLayout.EAST);
@@ -85,12 +98,6 @@ class LicensePanelNew extends StagePanel<Boolean> {
         button3 = new JButton();
         button3.setText("Button");
         panel4.add(button3);
-        textPane1 = new JTextPane();
-        panel1.add(textPane1, BorderLayout.CENTER);
-        label1 = new JLabel();
-        label1.setEnabled(false);
-        label1.setText("Label");
-        panel1.add(label1, BorderLayout.NORTH);
     }
 
     /**

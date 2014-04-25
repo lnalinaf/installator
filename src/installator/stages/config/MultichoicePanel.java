@@ -2,8 +2,7 @@ package installator.stages.config;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.AbstractButton;
-import javax.swing.JCheckBox;
+import javax.swing.*;
 
 /**
  * Панель множественного выбора из списка по умолчанию. Используется по
@@ -34,7 +33,7 @@ class MultichoicePanel extends StagePanel<Integer[]> {
      */
     MultichoicePanel(int index, String name, String text,
             String[] checkBoxText) {
-        super();
+        super(index);
         checkBoxes = new JCheckBox[checkBoxText.length];
         myInit(checkBoxText);
        // setName(name);
@@ -240,7 +239,7 @@ class MultichoicePanel extends StagePanel<Integer[]> {
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
-    private void calcData() {
+    protected void calcData() {
         List<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < checkBoxes.length; i++) {
             if (checkBoxes[i].isSelected()) {
@@ -249,6 +248,11 @@ class MultichoicePanel extends StagePanel<Integer[]> {
         }
         data = (Integer[]) list.toArray();
 
+    }
+
+    @Override
+    public JPanel getGUI() {
+        return null;
     }
 
     @Override

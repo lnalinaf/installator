@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  * @author cfif11
  * @param <T> тип возвращаемого значения от панель
  */
-public interface StageInteracting<T> {
+interface StageInteracting<T> {
     
 
     

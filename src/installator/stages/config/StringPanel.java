@@ -1,5 +1,7 @@
 package installator.stages.config;
 
+import javax.swing.*;
+
 /**
  * Панель ответа на вопрос по умолчанию. Используется по умолчанию для
  * графического интерфейса {@link StringStage}
@@ -29,7 +31,7 @@ class StringPanel extends StagePanel<String> {
      * @param defaultAnswer путь по умолчанию
      */
     StringPanel(int index, String name, String text, String defaultAnswer) {
-        super();
+        super(index);
         myInit();
        // setName(name);
         jLabel1.setText(text);
@@ -238,7 +240,7 @@ class StringPanel extends StagePanel<String> {
         calcData();
         nextListener.panelComplited(this);
     }//GEN-LAST:event_jButton2ActionPerformed
-    private void calcData() {
+    protected void calcData() {
         data = jTextField1.getText();
 
     }
@@ -249,6 +251,11 @@ class StringPanel extends StagePanel<String> {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+
+    @Override
+    public JPanel getGUI() {
+        return null;
+    }
 
     @Override
     protected void init() {

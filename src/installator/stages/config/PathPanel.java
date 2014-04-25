@@ -1,5 +1,7 @@
 package installator.stages.config;
 
+import javax.swing.*;
+
 /**
  * Панель выора пути по умолчанию. Используется по умолчанию для графического 
  * интерфейса {@link PathStage}
@@ -29,7 +31,7 @@ class PathPanel extends StagePanel<String> {
      * @param defaultPath путь по умолчанию
      */
     PathPanel(int index, String name, String text, String defaultPath) {
-        super();
+        super(index);
         myInit();
       //  setName(name);
         jLabel1.setText(text);
@@ -149,7 +151,7 @@ class PathPanel extends StagePanel<String> {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    private void calcData() {
+    protected void calcData() {
         data = jTextField1.getText();
 
     }
@@ -249,6 +251,11 @@ class PathPanel extends StagePanel<String> {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allVertcalGroup)
         );*/
+    }
+
+    @Override
+    public JPanel getGUI() {
+        return null;
     }
 
     @Override

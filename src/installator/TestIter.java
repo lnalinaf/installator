@@ -13,9 +13,8 @@ public class TestIter extends JFrame {
 
     TestIter() {
         super();
-        Dimension d = new Dimension(800, 600);
+        Dimension d = new Dimension(400, 300);
         setMinimumSize(d);
-        button1.setText("Button1");
         setContentPane(panel);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,9 +48,6 @@ public class TestIter extends JFrame {
         panel = new JPanel();
         panel.setLayout(new BorderLayout(0, 0));
         panel.setMinimumSize(new Dimension(200, 300));
-        button1 = new JButton();
-        button1.setText("Button");
-        panel.add(button1, BorderLayout.NORTH);
     }
 
     /**

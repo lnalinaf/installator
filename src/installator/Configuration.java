@@ -4,6 +4,7 @@ import installator.stages.config.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -22,9 +23,9 @@ public class Configuration {
     private final Parameters parameters = new Parameters();
     private TestIter form;
     private ConfigStage currentStage = null;
-    private NextListener nextListener = new DefaultNextListener();
-    private BackListener backListener = new DefaultBackListener();
-    private CancelListener cancelListener = new DefaultCancelListener();
+    private NextListener nextListener;// = new DefaultNextListener();
+    private BackListener backListener;// = new DefaultBackListener();
+    private CancelListener cancelListener;// = new DefaultCancelListener();
     
     /**
      * Создать Конфигурацию
@@ -35,30 +36,20 @@ public class Configuration {
         this.list = stages;
         currentStage = list.get(0);
         setListeners();
-        form = new TestIter();
-        //form.getContentPane().add(new LicensePanelNew().panel1);
+        if(isGUI) {
+            form = new TestIter();
+            form.getContentPane().add(stages.get(0).getPanel().getGUI());
+            form.setVisible(true);
 
-        form.setVisible(true);
-        /*this.form.panel = (JPanel)currentStage.getPanel();
-        this.form.myInit();*/
-    }
-    
-    /**
-     * Добавить стадию в некоторое место списка
-     * @param index
-     * @param stage 
-     */
-    public void addStage(int index, ConfigStage stage) {
-        list.add(index, stage);
-    }
-    
-    /**
-     * Получить стадию по индексу
-     * @param index
-     * @return 
-     */
-    public ConfigStage getStage(int index) {
-        return list.get(index);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            form.getContentPane().remove(stages.get(0).getPanel().getGUI());
+            form.getContentPane().add(stages.get(1).getPanel().getGUI());
+            form.setVisible(true);
+        }
     }
     
     
@@ -71,9 +62,9 @@ public class Configuration {
     }
     
     private void setListeners() {
-        currentStage.setBackListener(backListener);
+       /* currentStage.setBackListener(backListener);
         currentStage.setCancelListener(cancelListener);
-        currentStage.setNextListener(nextListener);
+        currentStage.setNextListener(nextListener);          */
     }
     
     /**
@@ -101,7 +92,7 @@ public class Configuration {
         this.cancelListener = cancelListener;
     }
     
-    class DefaultNextListener implements NextListener {
+  /*  class DefaultNextListener implements NextListener {
 
         @Override
         public <T> void panelComplited(StageInteracting<T> panel) {
@@ -142,6 +133,6 @@ public class Configuration {
         public <T> void panelCanceled(StageInteracting<T> panel) {
             System.out.println("Exit");
         }
-    }
+    }          */
 
 }

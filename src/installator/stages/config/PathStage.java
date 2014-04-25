@@ -17,7 +17,7 @@ public class PathStage extends ConfigStage<String>{
      * @param name имя 
      */    
     public PathStage(StageInteracting<String> panel, int index, String name) {
-        super(panel, index, name);
+        //super(panel, index, name);
     //    ((StageInteracting)panel).setStage(this);
     }
     
@@ -29,7 +29,7 @@ public class PathStage extends ConfigStage<String>{
      * @param defaultPath путь по умолчанию
      */
     public PathStage(int index, String name, String text, String defaultPath) {
-        super(index, name);
+        //super(index, name);
         setPanel(new PathPanel(index, name, text, defaultPath));
     }
 

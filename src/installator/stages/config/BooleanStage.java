@@ -15,7 +15,7 @@ public class BooleanStage extends ConfigStage<Boolean>{
      * @param panel панель
      */
     public BooleanStage(int index, StageInteracting<Boolean> panel, String name) {
-        super(panel, index, name);
+      //  super(panel, index, name);
     }
     
      /**
@@ -26,7 +26,7 @@ public class BooleanStage extends ConfigStage<Boolean>{
      * @param text текст вопроса
      */
     public BooleanStage(int index, String name, String text) {
-        super(index, name);
+      //  super(index, name);
         setPanel(new BooleanPanel(index, name, text));
     }
 

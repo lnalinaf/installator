@@ -1,5 +1,7 @@
 package installator.stages.config;
 
+import javax.swing.*;
+
 /**
  * Панель логического выбора. Используется по умолчанию для графического
  * интерфейса {@link BooleanStage}
@@ -20,7 +22,7 @@ class BooleanPanel extends StagePanel<Boolean> {
     private final int LEFT_BUTTON_GAP = 92;
 
     BooleanPanel(int index, String name, String text) {
-        super();
+        super(index);
         /*myInit();
          setName(name);
          jLabel1.setText(text);
@@ -164,8 +166,13 @@ class BooleanPanel extends StagePanel<Boolean> {
     private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void calcData() {
+    protected void calcData() {
         data = jCheckBox1.isSelected();
+    }
+
+    @Override
+    public JPanel getGUI() {
+        return null;
     }
 
     @Override
