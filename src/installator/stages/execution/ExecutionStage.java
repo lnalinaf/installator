@@ -1,25 +1,35 @@
 package installator.stages.execution;
 
 import installator.ExecStage;
-import java.io.File;
-import java.io.IOException;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author s0912679
+ */
 public class ExecutionStage implements ExecStage {
 
-    public ExecutionStage(String command, String[] envp, File dir) {
-    }
-
-    public ExecutionStage(String command, File dir) {
-        this(command, null, dir);
-    }
+    String command = null;
 
     public ExecutionStage(String command) {
-        this(command, null, null);
+        this.command = command;
     }
 
     @Override
     public int run() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Process p= Runtime.getRuntime().exec(command);
+        try {
+            p.waitFor();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ExecutionStage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p.exitValue();
     }
-
 }

@@ -18,6 +18,7 @@ public abstract class ConfigStage<T> implements StageInteracting<T> {
      * Индефикатор
      */
     protected int index;
+    protected T data;
 
     private static final AtomicInteger STAGE_NUMERATOR = new AtomicInteger();
 
@@ -43,7 +44,7 @@ public abstract class ConfigStage<T> implements StageInteracting<T> {
      */
     @Override
     public T getData() {
-        return panel.getData();
+        return data;
     }
 
     protected void setPanel(StagePanel<T> panel) {
@@ -84,6 +85,21 @@ public abstract class ConfigStage<T> implements StageInteracting<T> {
     public int getIndex() {
         return index;
     }
+
+    public void run() {
+        if(!Configuration.gui) {
+            data = doInConsole();
+        } else {
+      //  while (getData() == null) {
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        //}
+    }
+
 
     public abstract T doInConsole();
 }

@@ -8,8 +8,8 @@ import javax.swing.JPanel;
  * @author cfif11
  */
 public class PathStage extends ConfigStage<String>{
-    public void doInConsole(){
-        System.out.println();
+    public String doInConsole(){
+        return null;
     }
     /**
      * Создание стадии выбора пути с панелью разработчика.

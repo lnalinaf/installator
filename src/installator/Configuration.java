@@ -5,6 +5,7 @@ import installator.stages.config.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -17,9 +18,10 @@ import javax.swing.JPanel;
  * {@link NextListener} и {@link BackListener}
  * @author cfif11
  */
-public class Configuration {
+public class Configuration implements Iterable<ConfigStage> {
     
     private ArrayList<ConfigStage> list;
+    public static boolean gui;
     private final Parameters parameters = new Parameters();
     private TestIter form;
     private ConfigStage currentStage = null;
@@ -34,6 +36,7 @@ public class Configuration {
      */
     Configuration(ArrayList<ConfigStage> stages, boolean isGUI) {
         this.list = stages;
+        gui = isGUI;
         currentStage = list.get(0);
         setListeners();
         if(isGUI) {
@@ -66,6 +69,7 @@ public class Configuration {
         currentStage.setCancelListener(cancelListener);
         currentStage.setNextListener(nextListener);          */
     }
+
     
     /**
      * Установить слушатель для алгоритмов перехода между стадиями(кнопка вперед)
@@ -91,12 +95,55 @@ public class Configuration {
     public void setCancelListener(CancelListener cancelListener) {
         this.cancelListener = cancelListener;
     }
-    
+
+    @Override
+    public Iterator<ConfigStage> iterator() {
+        return new Iterator<ConfigStage>() {
+            Iterator<ConfigStage> temp = list.iterator();
+            @Override
+            public boolean hasNext() {
+                return temp.hasNext();
+            }
+
+            @Override
+            public ConfigStage next() {
+                return null;
+            }
+
+            @Override
+            public void remove() {
+
+            }
+        };
+    }
+
+    public void run() {
+        ConfigStage old = null;
+        if(gui)
+            form = new TestIter();
+        for(ConfigStage cur : list) {
+            if(cur.isUsable()) {
+                cur.run();
+                parameters.addParameter(cur.getIndex(), cur.getData());
+                if(gui) {
+
+                    if(old != null)
+                        form.getContentPane().remove(old.getPanel().getGUI());
+                    form.getContentPane().add(cur.getPanel().getGUI());
+                    form.setVisible(true);
+
+                }
+            }
+            old = cur;
+        }
+    }
+
   /*  class DefaultNextListener implements NextListener {
 
         @Override
-        public <T> void panelComplited(StageInteracting<T> panel) {
+        public <T> void panelComplited(ConfigStage<T> panel) {
             System.out.println("Next");
+            ConfigStage temp = currentStage;
             parameters.addParameter(panel.getIndex(), panel.getData());
             if(panel.getIndex()+1 <= list.size())
                 currentStage = list.get(panel.getIndex() + 1);
@@ -104,13 +151,14 @@ public class Configuration {
                 System.out.println("The End");
                 return;
             }
+            form.remove();
             setListeners();
             form.add((JPanel)currentStage.getPanel());
         }
     
     }
     
-    class DefaultBackListener implements BackListener {
+   /* class DefaultBackListener implements BackListener {
 
         @Override
         public <T> void panelReverted(StageInteracting<T> panel) {

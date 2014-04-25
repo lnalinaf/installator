@@ -37,4 +37,9 @@ public class StringStage extends ConfigStage<String> {
       //  super(index, name);
         setPanel(new StringPanel(index, name, question, defaultAnswer));
     }
+
+    @Override
+    public String doInConsole() {
+        return null;
+    }
 }

@@ -18,4 +18,9 @@ public class ChoiceStage extends ConfigStage<Integer> {
     public ChoiceStage(String text, String[] itemsText) {
         setPanel(new ChoicePanelNew(index, text, itemsText));
     }
+
+    @Override
+    public Integer doInConsole() {
+        return null;
+    }
 }

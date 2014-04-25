@@ -5,11 +5,12 @@ import java.io.InputStreamReader;
 
 public class LicenseStage extends ConfigStage<Boolean>{
     public Boolean doInConsole(){
-        System.out.println(text);
+       /* System.out.println(text);
         System.out.println(question);
         BufferedReader b = new BufferedReader(new InputStreamReader());
 
-        System.exit();
+        System.exit();  */
+        return null;
     }
     /**
      * Создание стадии принятия лицензии с панелью 

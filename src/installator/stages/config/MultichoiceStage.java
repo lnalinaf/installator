@@ -34,4 +34,8 @@ public class MultichoiceStage extends ConfigStage<Integer[]> {
         setPanel(new MultichoicePanel(index, name, text, itemsText));
     }
 
+    @Override
+    public Integer[] doInConsole() {
+        return new Integer[0];
+    }
 }

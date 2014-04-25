@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author agalkin
  */
-public abstract class StagePanel<T> implements StageInteracting<T> {
+public abstract class StagePanel<T> implements StageInteracting<T>, Runnable{
 
     protected NextListener nextListener;
     protected CancelListener cancelListener;
@@ -54,6 +54,10 @@ public abstract class StagePanel<T> implements StageInteracting<T> {
     @Override
     public int getIndex() {
         return index;
+    }
+
+    public void run() {
+
     }
 
     public abstract JPanel getGUI();

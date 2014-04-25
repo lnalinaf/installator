@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package installator;
+package installator.stages.execution;
+
+import installator.ExecStage;
 
 import java.io.File;
 import java.io.IOException;
