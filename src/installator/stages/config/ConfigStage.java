@@ -2,6 +2,7 @@ package installator.stages.config;
 
 import installator.Configuration;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -85,5 +86,5 @@ public abstract class ConfigStage<T> implements StageInteracting<T> {
         return index;
     }
 
-    public abstract T doInConsole();
+    public abstract T doInConsole() throws IOException;
 }

@@ -1,6 +1,9 @@
 package installator.stages.config;
 
 import javax.swing.JPanel;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Стадия предназначенная для выбора пути установки. Основная полезная 
@@ -8,8 +11,17 @@ import javax.swing.JPanel;
  * @author cfif11
  */
 public class PathStage extends ConfigStage<String>{
-    public void doInConsole(){
-        System.out.println();
+    String name;
+
+    public String doInConsole() throws IOException {
+        System.out.println(name);
+
+        BufferedReader b = new BufferedReader(new InputStreamReader());
+        String s = b.readLine();
+
+        return s;
+
+        b.close();
     }
     /**
      * Создание стадии выбора пути с панелью разработчика.

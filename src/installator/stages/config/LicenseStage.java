@@ -1,15 +1,23 @@
 package installator.stages.config;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class LicenseStage extends ConfigStage<Boolean>{
-    public Boolean doInConsole(){
+    String text;
+    String question;
+    public Boolean doInConsole() throws IOException {
         System.out.println(text);
         System.out.println(question);
         BufferedReader b = new BufferedReader(new InputStreamReader());
-
-        System.exit();
+        String s = b.readLine();
+        if(s.equalsIgnoreCase("y")||s.equalsIgnoreCase("yes")){
+            return true;
+        }else{
+            return false;
+        }
+        b.close();
     }
     /**
      * Создание стадии принятия лицензии с панелью 
