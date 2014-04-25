@@ -8,7 +8,9 @@ import javax.swing.JPanel;
  * @author cfif11
  */
 public class PathStage extends ConfigStage<String>{
-
+    public void doInConsole(){
+        System.out.println();
+    }
     /**
      * Создание стадии выбора пути с панелью разработчика.
      * @param panel панель, созданная разработчиком. Обязательно должна быть 

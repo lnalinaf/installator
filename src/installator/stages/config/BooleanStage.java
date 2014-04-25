@@ -7,6 +7,10 @@ package installator.stages.config;
  */
 public class BooleanStage extends ConfigStage<Boolean>{
 
+    public void doInConsole(){
+
+        System.out.println();
+    }
      /**
      * Создание стадии логического выбора с панелью
      * {@link BooleanPanel по умолчанию}.

@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author cfif11
  * @param <T> Тип данных, которые возвращает стадия после своего завершения.
  */
-public class ConfigStage<T> implements StageInteracting<T> {
+public abstract class ConfigStage<T> implements StageInteracting<T> {
 
     /**
      * Индефикатор
@@ -84,4 +84,6 @@ public class ConfigStage<T> implements StageInteracting<T> {
     public int getIndex() {
         return index;
     }
+
+    public abstract T doInConsole();
 }
