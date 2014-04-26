@@ -7,10 +7,19 @@ package installator.stages.config;
  */
 public class BooleanStage extends ConfigStage<Boolean>{
 
-    public Boolean doInConsole(){
+    public void doInConsole(){
 
-        System.out.println();
-        return null;
+    public Boolean doInConsole() throws IOException {
+        System.out.println(name);
+
+        BufferedReader b = new BufferedReader(new InputStreamReader());
+        String s = b.readLine();
+        if(s.equalsIgnoreCase("y")||s.equalsIgnoreCase("yes")){
+            return true;
+        }else{
+            return false;
+        }
+        b.close();
     }
      /**
      * Создание стадии логического выбора с панелью
