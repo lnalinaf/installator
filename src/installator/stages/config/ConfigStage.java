@@ -89,7 +89,11 @@ public abstract class ConfigStage<T> implements StageInteracting<T> {
 
     public void run() {
         if(!Configuration.gui) {
-            data = doInConsole();
+            try {
+                data = doInConsole();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
       //  while (getData() == null) {
                 try {

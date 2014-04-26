@@ -14,19 +14,19 @@ import java.io.InputStreamReader;
  * @author cfif11
  */
 public class PathStage extends ConfigStage<String>{
-    String name;
+
 
     String name;
 
     public String doInConsole() throws IOException {
         System.out.println(name);
 
-        BufferedReader b = new BufferedReader(new InputStreamReader());
+        BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
         String s = b.readLine();
 
+        b.close();
         return s;
 
-        b.close();
     }
     /**
      * Создание стадии выбора пути с панелью разработчика.
