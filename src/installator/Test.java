@@ -15,8 +15,10 @@ public class Test {
     public static void main(String[] args) {
         list.add(new LicenseStage("I agree", "BLABLABLABLABLABLA\nBLABLABLA"));
         list.add(new ChoiceStage("question", new String[] {"default", "two"}));
-       /* list.add(2, new MultichoiceStage(2, "multichoice", "question", new String[] {"default", "one", "two"}));
-        list.add(3, new PathStage(3, "path", "Where", "C:/windows"));                   */
+        list.add(new MultichoiceStage("question", new String[] {"default", "one", "two"}));
+        list.add(new BooleanStage("Do?", "Yes"));
+        list.add(new PathStage("Where", "C:/windows"));
+        list.add(new StringStage("Что делать?", "забить болт"));
 
         config = new Configuration(list, true);
 

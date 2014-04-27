@@ -26,27 +26,15 @@ private String name;
             return false;
         }
     }
-     /**
-     * Создание стадии логического выбора с панелью
-     * {@link BooleanPanel по умолчанию}.
-     * @param index индефикатор
-     * @param name имя
-     * @param panel панель
-     */
-    public BooleanStage(int index, StageInteracting<Boolean> panel, String name) {
-      //  super(panel, index, name);
-    }
     
      /**
      * Создание стадии логического выбора с панелью по умолчанию
      * {@link BooleanPanel по умолчанию}.
-     * @param index индефикатор
-     * @param name имя
-     * @param text текст вопроса
+     * @param question текст вопроса
+     * @param answer текст ответа
      */
-    public BooleanStage(int index, String name, String text) {
-      //  super(index, name);
-        setPanel(new BooleanPanel(index, name, text));
+    public BooleanStage(String question, String answer) {
+        setPanel(new BooleanPanel(index, question, answer));
     }
 
 }

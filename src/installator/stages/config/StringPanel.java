@@ -1,265 +1,122 @@
 package installator.stages.config;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
- * Панель ответа на вопрос по умолчанию. Используется по умолчанию для
- * графического интерфейса {@link StringStage}
- *
- * @author alina
+ * Created by cfif11 on 27.04.14.
  */
-class StringPanel extends StagePanel<String> {
+public class StringPanel extends StagePanel<String> {
+    private JPanel panel1;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JTextField textField1;
+    private JLabel label;
 
-    private javax.swing.GroupLayout layout;
-    private javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
-    private javax.swing.GroupLayout.SequentialGroup buttonHorizontalGroup;
-    private javax.swing.GroupLayout.SequentialGroup allHorizontalGroup;
-    private javax.swing.GroupLayout.ParallelGroup buttonVertcalGroup;
-    private javax.swing.GroupLayout.SequentialGroup allVertcalGroup;
-    private final int UP_LABEL_GAP = 110;
-    private final int DOWN_TEXT_GAP = 108;
-    private final int WIDTH_BUTTON = 88;
-    private final int HEIGHT_BUTTON = 25;
-    private final int LEFT_BUTTON_GAP = 92;
-
-    /**
-     * Создание панельки по умолчанию
-     *
-     * @param index Индефикатор
-     * @param name имя
-     * @param text текст вопроса
-     * @param defaultAnswer путь по умолчанию
-     */
-    StringPanel(int index, String name, String text, String defaultAnswer) {
+    public StringPanel(int index, String question, String defaultAnswer) {
         super(index);
-        myInit();
-       // setName(name);
-        jLabel1.setText(text);
-        jTextField1.setText(defaultAnswer);
-        initComponents();
-    }
+        init();
+        label.setText(question);
+        textField1.setText(defaultAnswer);
 
-    private void fillButtonGroup() {
-        buttonHorizontalGroup
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, LEFT_BUTTON_GAP, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2))
-                .addComponent(jTextField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButton3)
-                .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING));
-        buttonVertcalGroup
-                .addComponent(jButton3)
-                .addComponent(jButton2)
-                .addComponent(jButton1);
-    }
-
-    private void fillAllGroup() {
-        allVertcalGroup
-                .addContainerGap(UP_LABEL_GAP, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton4)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(DOWN_TEXT_GAP, DOWN_TEXT_GAP, DOWN_TEXT_GAP)
-                .addGroup(buttonVertcalGroup)
-                .addContainerGap();
-        allHorizontalGroup
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel1)
-                .addGroup(buttonHorizontalGroup))
-                .addContainerGap();
-    }
-
-    private void myInit() {/*
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-
-        jButton1.setText("Назад");
-        jButton1.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton1.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton1.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-
-        jButton2.setText("Далее");
-        jButton2.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton2.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton2.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-
-        jButton3.setText("Отмена");
-        jButton3.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton3.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton3.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-
-        jButton4.setText("Обзор");
-        jButton4.setMaximumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton4.setMinimumSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton4.setPreferredSize(new java.awt.Dimension(WIDTH_BUTTON, HEIGHT_BUTTON));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         });
-        jLabel1.setText("Ляляля?");
-        jTextField1.setText("C:/");
-        jTextField1.setEditable(false);
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calcData();
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        layout = new javax.swing.GroupLayout(this);
-        buttonHorizontalGroup = layout.createSequentialGroup();
-        allHorizontalGroup = layout.createSequentialGroup();
-
-        buttonVertcalGroup = layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE);
-        allVertcalGroup = layout.createSequentialGroup();
-
-        fillButtonGroup();
-        fillAllGroup();
-
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(allHorizontalGroup));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, allVertcalGroup));*/
+            }
+        });
     }
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {/*
-
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jTextField1.setText("jTextField1");
-
-        jLabel1.setText("jLabel1");
-
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
-                            .addComponent(jButton3))))
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addGap(22, 22, 22))
-        );*/
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        cancelListener.panelCanceled(this);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        fileChooser.setFileSelectionMode(fileChooser.DIRECTORIES_ONLY);
-        if (fileChooser.showOpenDialog(null) != fileChooser.APPROVE_OPTION) {
-            return;
-        }
-        jTextField1.setText(fileChooser.getSelectedFile().getParent() + '/'
-                + fileChooser.getSelectedFile().getName());
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        backListener.panelReverted(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        calcData();
-        nextListener.panelComplited(this);
-    }//GEN-LAST:event_jButton2ActionPerformed
-    protected void calcData() {
-        data = jTextField1.getText();
-
-    }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
 
     @Override
     public JPanel getGUI() {
-        return null;
+        return panel1;
     }
 
     @Override
     protected void init() {
-
+        panel1.setSize(400, 300);
+        button1.setText("Назад");
+        button2.setText("Вперед");
+        button3.setText("Отмена");
     }
-    // End of variables declaration//GEN-END:variables
+
+    @Override
+    protected void calcData() {
+        data = textField1.getText();
+    }
+
+    {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+        $$$setupUI$$$();
+    }
+
+    /**
+     * Method generated by IntelliJ IDEA GUI Designer
+     * >>> IMPORTANT!! <<<
+     * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
+     */
+    private void $$$setupUI$$$() {
+        panel1 = new JPanel();
+        panel1.setLayout(new BorderLayout(0, 0));
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new BorderLayout(0, 0));
+        panel1.add(panel2, BorderLayout.SOUTH);
+        final JPanel panel3 = new JPanel();
+        panel3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panel2.add(panel3, BorderLayout.EAST);
+        button1 = new JButton();
+        button1.setText("Button");
+        panel3.add(button1);
+        button2 = new JButton();
+        button2.setText("Button");
+        panel3.add(button2);
+        button3 = new JButton();
+        button3.setText("Button");
+        panel3.add(button3);
+        final JPanel panel4 = new JPanel();
+        panel4.setLayout(new GridBagLayout());
+        panel1.add(panel4, BorderLayout.CENTER);
+        label = new JLabel();
+        label.setText("Label");
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        panel4.add(label, gbc);
+        textField1 = new JTextField();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 0.1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel4.add(textField1, gbc);
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return panel1;
+    }
 }

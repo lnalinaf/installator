@@ -2,11 +2,13 @@ package installator.stages.config;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by agalkin on 24.04.2014.
  */
-class LicensePanelNew extends StagePanel<Boolean> {
+class LicensePanel extends StagePanel<Boolean> {
     private JPanel panel1;
     private JCheckBox checkBox1;
     private JTextPane textPane1;
@@ -16,12 +18,29 @@ class LicensePanelNew extends StagePanel<Boolean> {
     private JLabel label1;
     private JLabel label2;
 
-    LicensePanelNew(int index, String text, String question) {
+    LicensePanel(int index, String text, String question) {
         super(index);
         init();
-        panel1.setSize(400, 300);
         label2.setText(question);
         textPane1.setText(text);
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calcData();
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
 
@@ -32,6 +51,7 @@ class LicensePanelNew extends StagePanel<Boolean> {
 
     @Override
     protected void init() {
+        panel1.setSize(400, 300);
         label1.setText("Лицензионное соглашение");
         button1.setText("Назад");
         button2.setText("Вперед");

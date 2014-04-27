@@ -2,11 +2,13 @@ package installator.stages.config;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by cfif11 on 25.04.14.
  */
-class ChoicePanelNew extends StagePanel<Integer> {
+class ChoicePanel extends StagePanel<Integer> {
     private JPanel panel1;
     private JButton button1;
     private JButton button2;
@@ -16,7 +18,7 @@ class ChoicePanelNew extends StagePanel<Integer> {
     private JLabel label;
     private JPanel panel2;
 
-    ChoicePanelNew(int index, String text, String[] radioButtonsText) {
+    ChoicePanel(int index, String text, String[] radioButtonsText) {
         super(index);
         init();
         panel1.setSize(400, 300);
@@ -33,6 +35,24 @@ class ChoicePanelNew extends StagePanel<Integer> {
             panel2.add(radioButtons[i], gbc);
             buttonGroup.add(radioButtons[i]);
         }
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calcData();
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     @Override

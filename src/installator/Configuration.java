@@ -41,7 +41,8 @@ public class Configuration implements Iterable<ConfigStage> {
         setListeners();
         if(isGUI) {
             form = new TestIter();
-            form.getContentPane().add(stages.get(0).getPanel().getGUI());
+            run();
+          /*  form.getContentPane().add(stages.get(0).getPanel().getGUI());
             form.setVisible(true);
 
             try {
@@ -51,7 +52,7 @@ public class Configuration implements Iterable<ConfigStage> {
             }
             form.getContentPane().remove(stages.get(0).getPanel().getGUI());
             form.getContentPane().add(stages.get(1).getPanel().getGUI());
-            form.setVisible(true);
+            form.setVisible(true);    */
         }
     }
     
@@ -123,8 +124,8 @@ public class Configuration implements Iterable<ConfigStage> {
             form = new TestIter();
         for(ConfigStage cur : list) {
             if(cur.isUsable()) {
-                cur.run();
-                parameters.addParameter(cur.getIndex(), cur.getData());
+                //cur.run();
+                //parameters.addParameter(cur.getIndex(), cur.getData());
                 if(gui) {
 
                     if(old != null)
@@ -135,6 +136,11 @@ public class Configuration implements Iterable<ConfigStage> {
                 }
             }
             old = cur;
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

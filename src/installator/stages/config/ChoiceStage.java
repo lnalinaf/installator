@@ -16,28 +16,20 @@ public class ChoiceStage extends ConfigStage<Integer> {
     public Integer doInConsole() throws IOException {
         System.out.println(text);
 
-        BufferedReader b = new BufferedReader(new InputStreamReader());
+        BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
         String s = b.readLine();
-        if(s.equalsIgnoreCase("y")||s.equalsIgnoreCase("yes")){
-            return true;
-        }else{
-            return false;
-        }
         b.close();
+        return null;
     }
     /**
      * Создание стадии единичного выбора из списка с панелью
-     * {@link ChoicePanelNew по умолчанию}.
+     * {@link ChoicePanel по умолчанию}.
      *
      * @param text текст вопроса
      * @param itemsText массив строк для пунктов списка
      */
     public ChoiceStage(String text, String[] itemsText) {
-        setPanel(new ChoicePanelNew(index, text, itemsText));
+        setPanel(new ChoicePanel(index, text, itemsText));
     }
 
-    @Override
-    public Integer doInConsole() {
-        return null;
-    }
 }

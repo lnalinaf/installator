@@ -16,22 +16,17 @@ public class MultichoiceStage extends ConfigStage<Integer[]> {
      * @param index индефикатор
      * @param name имя
      */
-    public MultichoiceStage(StageInteracting<Integer[]> panel, int index, String name) {
-      //  super(panel, index, name);
-    }
+
 
     /**
      * Создание стадии множественного выбора из списка с панелью
      * {@link MultichoicePanel по умолчанию}.
      *
-     * @param index индефикатор
-     * @param name имя
      * @param text текст вопроса
      * @param itemsText массив строк для пунктов списка
      */
-    public MultichoiceStage(int index, String name, String text, String[] itemsText) {
-       // super(index, name);
-        setPanel(new MultichoicePanel(index, name, text, itemsText));
+    public MultichoiceStage(String text, String[] itemsText) {
+        setPanel(new MultichoicePanel(index, text, itemsText));
     }
 
     @Override

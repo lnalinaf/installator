@@ -13,29 +13,14 @@ package installator.stages.config;
 public class StringStage extends ConfigStage<String> {
 
     /**
-     * Создание стадии ответа на вопрос с панелью разработчика
-     * 
-     * @param index индефикатор
-     * @param panel панель, созданная разработчиком. Обязательно должна быть
-     * наследником {@link StageInteracting}
-     * @param name имя
-     */
-    StringStage(int index, StageInteracting<String> panel, String name) {
-      //  super(panel, index, name);
-    }
-
-    /**
      * Создание стадии ответа на вопрос с панелью 
      * {@link StringPanel по умолчанию}
-     * 
-     * @param index индефикатор
-     * @param name имя
+     *
      * @param question вопрос
      * @param defaultAnswer ответ по умолчанию
      */
-    public StringStage(int index, String name, String question, String defaultAnswer) {
-      //  super(index, name);
-        setPanel(new StringPanel(index, name, question, defaultAnswer));
+    public StringStage(String question, String defaultAnswer) {
+        setPanel(new StringPanel(index, question, defaultAnswer));
     }
 
     @Override
