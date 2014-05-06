@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by agalkin on 24.04.2014.
+ * @author cfif11
  */
 class LicensePanel extends StagePanel<Boolean> {
     private JPanel panel1;
@@ -32,7 +32,7 @@ class LicensePanel extends StagePanel<Boolean> {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                calcData();
+				calcData();
             }
         });
         button1.addActionListener(new ActionListener() {
@@ -61,7 +61,8 @@ class LicensePanel extends StagePanel<Boolean> {
 
     @Override
     protected void calcData() {
-        data = checkBox1.isSelected();
+		data = checkBox1.isSelected();
+		super.calcData();
     }
 
     {

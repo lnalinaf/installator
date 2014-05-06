@@ -1,4 +1,4 @@
-package installator;
+package installator.stages.execution;
 
 import java.io.IOException;
 

@@ -5,36 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Стадия предназначенная для логического выбора. Основная полезная 
+ * Стадия предназначенная для логического выбора. Основная полезная
  * информация при работе с пользователем: true or false
+ *
  * @author alina
  */
-public class BooleanStage extends ConfigStage<Boolean>{
+public class BooleanStage extends ConfigStage<Boolean> {
 
-private String name;
+	private String question;
 
-    public Boolean doInConsole() throws IOException {
-        System.out.println(name);
+	public Boolean doInConsole() {
+		System.out.println(question);
+		System.out.println("Наберите yes или y, если вы согласны");
+		String s;
+		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
+			s = b.readLine();
+		} catch (IOException e) {
+			System.out.println("Ошибка: " + e.getMessage() + "Попробуйте ввести еще раз:");
+			return null;
+		}
+		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
+	}
 
-        BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
-        String s = b.readLine();
-
-            b.close();
-        if(s.equalsIgnoreCase("y")||s.equalsIgnoreCase("yes")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-     /**
-     * Создание стадии логического выбора с панелью по умолчанию
-     * {@link BooleanPanel по умолчанию}.
-     * @param question текст вопроса
-     * @param answer текст ответа
-     */
-    public BooleanStage(String question, String answer) {
-        setPanel(new BooleanPanel(index, question, answer));
-    }
+	/**
+	 * Создание стадии логического выбора с панелью по умолчанию
+	 * {@link BooleanPanel по умолчанию}.
+	 *
+	 * @param question текст вопроса
+	 * @param answer   текст ответа
+	 */
+	public BooleanStage(String question, String answer) {
+		this.question = question;
+		setPanel(new BooleanPanel(index, question, answer));
+	}
 
 }

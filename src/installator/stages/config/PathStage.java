@@ -5,34 +5,37 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Стадия предназначенная для выбора пути установки. Основная полезная 
+ * Стадия предназначенная для выбора пути установки. Основная полезная
  * информация при работе с пользователем: путь до папки в виде строки.
+ *
  * @author cfif11
  */
-public class PathStage extends ConfigStage<String>{
+public class PathStage extends ConfigStage<String> {
 
+	private String text;
+	private String defaultPath;
 
-    String name;
+	public String doInConsole() {
+		System.out.println(text);
+		System.out.println("Например: " + defaultPath);
 
-    public String doInConsole() throws IOException {
-        System.out.println(name);
+		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
+			return b.readLine();
+		} catch (IOException e) {
+			System.out.println("Ошибка: " + e.getMessage() + "Попробуйте ввести еще раз:");
+			return null;
+		}
+	}
 
-        BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
-        String s = b.readLine();
-
-        b.close();
-        return s;
-
-    }
-
-    
-    /**
-     * Создание стадии выбора пути с панелью {@link PathPanel по умолчанию}.
-     * @param text текст вопроса
-     * @param defaultPath путь по умолчанию
-     */
-    public PathStage(String text, String defaultPath) {
-        setPanel(new PathPanel(index, text, defaultPath));
-    }
-
+	/**
+	 * Создание стадии выбора пути с панелью {@link PathPanel по умолчанию}.
+	 *
+	 * @param text        текст вопроса
+	 * @param defaultPath путь по умолчанию
+	 */
+	public PathStage(String text, String defaultPath) {
+		this.text = text;
+		this.defaultPath = defaultPath;
+		setPanel(new PathPanel(index, text, defaultPath));
+	}
 }

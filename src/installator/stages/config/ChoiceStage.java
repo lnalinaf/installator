@@ -11,25 +11,42 @@ import java.io.InputStreamReader;
  * @author cfif11
  */
 public class ChoiceStage extends ConfigStage<Integer> {
-    String text;
 
-    public Integer doInConsole() throws IOException {
-        System.out.println(text);
+	private String text;
+	private String[] itemsText;
 
-        BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
-        String s = b.readLine();
-        b.close();
-        return null;
-    }
-    /**
-     * Создание стадии единичного выбора из списка с панелью
-     * {@link ChoicePanel по умолчанию}.
-     *
-     * @param text текст вопроса
-     * @param itemsText массив строк для пунктов списка
-     */
-    public ChoiceStage(String text, String[] itemsText) {
-        setPanel(new ChoicePanel(index, text, itemsText));
-    }
+	public Integer doInConsole() {
+		System.out.println(text);
+		for (int i = 0; i < itemsText.length; i++)
+			System.out.println((i + 1) + ") " + itemsText[i]);
+
+		String s;
+		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
+			s = b.readLine();
+		} catch (IOException e) {
+			System.out.println("Ошибка: " + e.getMessage() + ". Попробуйте ввести еще раз.");
+			return null;
+		}
+
+		try {
+			return Integer.valueOf(s);
+		} catch (NumberFormatException e) {
+			System.out.println("Нужно ввести номер выбранного ответа. Попробуйте ввести еще раз.");
+			return null;
+		}
+	}
+
+	/**
+	 * Создание стадии единичного выбора из списка с панелью
+	 * {@link ChoicePanel по умолчанию}.
+	 *
+	 * @param text      текст вопроса
+	 * @param itemsText массив строк для пунктов списка
+	 */
+	public ChoiceStage(String text, String[] itemsText) {
+		this.text = text;
+		this.itemsText = itemsText;
+		setPanel(new ChoicePanel(index, text, itemsText));
+	}
 
 }

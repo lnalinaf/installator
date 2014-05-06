@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.List;
 
 /**
- * Created by cfif11 on 26.04.14.
+ * @author cfif11
  */
 public class MultichoicePanel extends StagePanel<Integer[]> {
     private final JCheckBox[] checkBoxes;
@@ -70,13 +70,14 @@ public class MultichoicePanel extends StagePanel<Integer[]> {
 
     @Override
     protected void calcData() {
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
         for (int i = 0; i < checkBoxes.length; i++) {
             if (checkBoxes[i].isSelected()) {
                 list.add(i);
             }
         }
         data = list.toArray(new Integer[list.size()]);
+		super.calcData();
     }
 
     {

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by cfif11 on 27.04.14.
+ * @author cfif11
  */
 public class StringPanel extends StagePanel<String> {
     private JPanel panel1;
@@ -58,6 +58,7 @@ public class StringPanel extends StagePanel<String> {
     @Override
     protected void calcData() {
         data = textField1.getText();
+		super.calcData();
     }
 
     {

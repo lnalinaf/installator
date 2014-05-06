@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by cfif11 on 25.04.14.
+ * @author cfif11
  */
 class ChoicePanel extends StagePanel<Integer> {
     private JPanel panel1;
@@ -71,8 +71,9 @@ class ChoicePanel extends StagePanel<Integer> {
     protected void calcData() {
         for (int i = 0; i < radioButtons.length; i++) {
             if (radioButtons[i].isSelected())
-                data = new Integer(i);
+                data = i;
         }
+		super.calcData();
     }
 
     {

@@ -4,27 +4,24 @@
  */
 package installator.stages.execution;
 
-import installator.ExecStage;
-
 import java.io.File;
 import java.io.IOException;
 
 /**
- *
- * @author s0912679
+ * @author Vera
  */
 public class MkDirStage implements ExecStage {
-    String name=null;
+	String name = null;
 
-    public MkDirStage(String name) {
-     this.name=name;   
-    }
+	public MkDirStage(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public int run() throws IOException {
-        boolean flag=false;
-        File file = new File(name);
-        flag= file.mkdirs();
-        return flag?0:1;
-    }
+	@Override
+	public int run() throws IOException {
+		boolean flag;
+		File file = new File(name);
+		flag = file.mkdirs();
+		return flag ? 0 : 1;
+	}
 }

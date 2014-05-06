@@ -2,67 +2,43 @@ package installator.stages.config;
 
 
 import javax.swing.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- *
  * @author agalkin
  */
-public abstract class StagePanel<T> implements StageInteracting<T>, Runnable{
+public abstract class StagePanel<T> {
 
-    protected NextListener nextListener;
-    protected CancelListener cancelListener;
-    protected BackListener backListener;
-    private boolean usable = true;
-    protected T data;
-    protected int index;
+	protected T data;
+	protected int index;
 
-    public StagePanel(int index) {
-        this.index = index;
-    }
+	class Lock {
 
-    @Override
-    public boolean isUsable() {
-        return usable;
-    }
+	}
 
-    @Override
-    public void setUsable(boolean usable) {
-        this.usable = usable;
-    }
+	protected final Lock lock = new Lock();
 
-    @Override
-    public T getData() {
-        return data;
-    }
+	public StagePanel(int index) {
+		this.index = index;
+	}
 
-    @Override
-    public void setNextListener(NextListener nextListener) {
-        this.nextListener = nextListener;
-    }
+	public abstract JPanel getGUI();
 
-    @Override
-    public void setBackListener(BackListener backListener) {
-        this.backListener = backListener;
-    }
+	protected abstract void init();
 
-    @Override
-    public void setCancelListener(CancelListener cancelListener) {
-        this.cancelListener = cancelListener;
-    }
+	protected void calcData() {
+		synchronized (lock) {
+			lock.notifyAll();
+		}
+	}
 
-    @Override
-    public int getIndex() {
-        return index;
-    }
-
-    public void run() {
-
-    }
-
-    public abstract JPanel getGUI();
-
-    protected abstract void init();
-
-    protected abstract void calcData();
+	T doInGUI() {
+		synchronized (lock) {
+			try {
+				lock.wait();
+				return data;
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
 }
