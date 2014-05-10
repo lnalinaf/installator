@@ -2,7 +2,6 @@ package installator.stages.config;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Стадия предназначенная для выбора одного пункта из списка. Основная полезная
@@ -15,24 +14,22 @@ public class ChoiceStage extends ConfigStage<Integer> {
 	private String text;
 	private String[] itemsText;
 
-	public Integer doInConsole() {
+	public Integer doInConsole(BufferedReader b) throws IOException {
 		System.out.println(text);
 		for (int i = 0; i < itemsText.length; i++)
 			System.out.println((i + 1) + ") " + itemsText[i]);
 
-		String s;
-		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
-			s = b.readLine();
-		} catch (IOException e) {
-			System.out.println("Ошибка: " + e.getMessage() + ". Попробуйте ввести еще раз.");
-			return null;
-		}
 
-		try {
-			return Integer.valueOf(s);
-		} catch (NumberFormatException e) {
-			System.out.println("Нужно ввести номер выбранного ответа. Попробуйте ввести еще раз.");
-			return null;
+		while (true) {
+			String s = b.readLine();
+			if (exitConsole(s))
+				return null;
+			try {
+				return Integer.valueOf(s);
+			} catch (NumberFormatException e) {
+				System.out.println("Нужно ввести номер выбранного ответа или \"quit\" для выхода из установки. " +
+						"Попробуйте еще раз.");
+			}
 		}
 	}
 

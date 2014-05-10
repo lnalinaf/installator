@@ -2,6 +2,9 @@ package installator;
 
 import installator.stages.config.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +13,7 @@ import java.util.ArrayList;
  * {@link Parameters}. Класс инициализируется с помощью списка {@link ConfigStage}
  * Переход от одной стадии к другой по умолчанию осуществляется по порядку.
  */
-public class Configuration{
+public class Configuration {
 
 	public static boolean gui;
 
@@ -62,18 +65,45 @@ public class Configuration{
 	}    */
 
 	private void run() {
-		if (gui)
+		if (gui) {
 			form = new TestIter();
-		for (ConfigStage cur : list) {
-			if (cur.isUsable()) {
-				if (gui) {
+			for (int i = 0; i < list.size(); i++) {
+				ConfigStage<?> cur = list.get(i);
+				if (cur.isUsable()) {
 					form.getContentPane().add(cur.getPanel().getGUI());
 					form.setVisible(true);
-				}
-				cur.run();
-				parameters.addParameter(cur.getIndex(), cur.getData());
-				if (gui)
+					cur.run();
+
+					if(cur.getData() == null) {
+						list.add(i + 1, new ExitStage("Установка была отменена. " +
+								"Для завршения работы инсталлятора нажмити кнопку \"Выход\"."));
+						form.getContentPane().remove(cur.getPanel().getGUI());
+						continue;
+					}
+
+					parameters.addParameter(i, cur.getData());
 					form.getContentPane().remove(cur.getPanel().getGUI());
+				}
+			}
+		} else {
+			int index = 0;
+			try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
+				for (int i = 0; i < list.size(); i++) {
+					ConfigStage<?> cur = list.get(i);
+					if (cur.isUsable()) {
+						index = cur.getIndex();
+						cur.run(b);
+						if(cur.getData() == null) {
+							list.add(i + 1, new ExitStage("Инствллятор будет закрыт. " +
+									"Нажмите \"Ввод\" для продолжения..."));
+							System.out.println("!!!");
+							continue;
+						}
+						parameters.addParameter(i, cur.getData());
+					}
+				}
+			} catch (IOException e) {
+				System.out.println("На стадии № " + index + " произошла ошибка: " + e.getMessage());
 			}
 		}
 	}

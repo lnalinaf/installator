@@ -2,7 +2,6 @@ package installator.stages.config;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Стадия предназначенная для выбора пути установки. Основная полезная
@@ -15,16 +14,14 @@ public class PathStage extends ConfigStage<String> {
 	private String text;
 	private String defaultPath;
 
-	public String doInConsole() {
+	public String doInConsole(BufferedReader b) throws IOException {
 		System.out.println(text);
 		System.out.println("Например: " + defaultPath);
 
-		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
-			return b.readLine();
-		} catch (IOException e) {
-			System.out.println("Ошибка: " + e.getMessage() + "Попробуйте ввести еще раз:");
+		String s = b.readLine();
+		if(exitConsole(s))
 			return null;
-		}
+		return s;
 	}
 
 	/**

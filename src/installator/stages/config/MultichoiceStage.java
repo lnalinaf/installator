@@ -2,7 +2,6 @@ package installator.stages.config;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Стадия предназначенная для множественного выбора из списка. Основная полезная
@@ -29,28 +28,25 @@ public class MultichoiceStage extends ConfigStage<Integer[]> {
 	}
 
 	@Override
-	public Integer[] doInConsole() {
+	public Integer[] doInConsole(BufferedReader b) throws IOException {
 		System.out.println(text);
 		for (int i = 0; i < itemsText.length; i++)
 			System.out.println((i + 1) + ") " + itemsText[i]);
 
-		String s;
-		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
-			s = b.readLine();
-		} catch (IOException e) {
-			System.out.println("Ошибка: " + e.getMessage() + "Попробуйте ввести еще раз.");
-			return null;
-		}
-
+		while (true) {
+			String s = b.readLine();
+			if (exitConsole(s))
+				return null;
 		String[] temp = s.split(",");
 		Integer[] result = new Integer[temp.length];
-		try {
-			for (int i = 0; i < temp.length; i++)
-				result[i] = Integer.valueOf(temp[i]);
-		} catch (NumberFormatException e) {
-			System.out.println("Нужно ввести номер выбранных ответов через запятую. Попробуйте ввести еще раз.");
-			return null;
+			try {
+				for (int i = 0; i < temp.length; i++)
+					result[i] = Integer.valueOf(temp[i]);
+				return result;
+			} catch (NumberFormatException e) {
+				System.out.println("Нужно ввести номера выбранных ответов через запятую или \"quit\" для выхода из " +
+						"установки. Попробуйте еще раз.");
+			}
 		}
-		return result;
 	}
 }

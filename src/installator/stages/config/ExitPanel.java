@@ -6,28 +6,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author cfif11
+ * Created by cfif11 on 06.05.14.
  */
-public class StringPanel extends StagePanel<String> {
+public class ExitPanel extends StagePanel<Void> {
 	private JPanel panel1;
 	private JButton button1;
-	private JButton button2;
-	private JButton button3;
-	private JTextField textField1;
-	private JLabel label;
+	private JTextPane textPane1;
 
-	public StringPanel(int index, String question, String defaultAnswer) {
+	public ExitPanel(int index, String text) {
 		super(index);
 		init();
-		label.setText(question);
-		textField1.setText(defaultAnswer);
-
-		button3.addActionListener(exitListener);
-		button2.addActionListener(nextListener);
+		textPane1.setText(text);
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				System.exit(0);
 			}
 		});
 	}
@@ -40,15 +33,7 @@ public class StringPanel extends StagePanel<String> {
 	@Override
 	protected void init() {
 		panel1.setSize(400, 300);
-		button1.setText("Назад");
-		button2.setText("Вперед");
-		button3.setText("Отмена");
-	}
-
-	@Override
-	protected void calcData() {
-		data = textField1.getText();
-		super.calcData();
+		button1.setText("Выход");
 	}
 
 	{
@@ -77,31 +62,8 @@ public class StringPanel extends StagePanel<String> {
 		button1 = new JButton();
 		button1.setText("Button");
 		panel3.add(button1);
-		button2 = new JButton();
-		button2.setText("Button");
-		panel3.add(button2);
-		button3 = new JButton();
-		button3.setText("Button");
-		panel3.add(button3);
-		final JPanel panel4 = new JPanel();
-		panel4.setLayout(new GridBagLayout());
-		panel1.add(panel4, BorderLayout.CENTER);
-		label = new JLabel();
-		label.setText("Label");
-		GridBagConstraints gbc;
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.anchor = GridBagConstraints.WEST;
-		panel4.add(label, gbc);
-		textField1 = new JTextField();
-		gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.weightx = 0.1;
-		gbc.anchor = GridBagConstraints.WEST;
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		panel4.add(textField1, gbc);
+		textPane1 = new JTextPane();
+		panel1.add(textPane1, BorderLayout.CENTER);
 	}
 
 	/**

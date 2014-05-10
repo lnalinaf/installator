@@ -13,6 +13,7 @@ public class Test {
 	private static final ArrayList<ConfigStage> list = new ArrayList<>();
 
 	public static void main(String[] args) {
+		list.add(new StartStage("Вас приветствует установщик программы Хосэ."));
 		list.add(new LicenseStage("I agree", "BLABLABLABLABLABLA\nBLABLABLA"));
 		list.add(new ChoiceStage("question", new String[]{"default", "two"}));
 		list.add(new MultichoiceStage("question", new String[]{"default", "one", "two"}));
@@ -20,7 +21,7 @@ public class Test {
 		list.add(new PathStage("Where", "C:/windows"));
 		list.add(new StringStage("Что делать?", "забить болт"));
 
-		config = new Configuration(list, false);
+		config = new Configuration(list, true);
 
 	}
 }

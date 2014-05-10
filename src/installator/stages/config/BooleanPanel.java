@@ -21,18 +21,8 @@ public class BooleanPanel extends StagePanel<Boolean> {
 		init();
 		label.setText(question);
 		checkBox1.setText(answer);
-		button3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		button2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				calcData();
-			}
-		});
+		button3.addActionListener(exitListener);
+		button2.addActionListener(nextListener);
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

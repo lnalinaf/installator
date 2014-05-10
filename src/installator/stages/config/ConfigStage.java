@@ -2,6 +2,7 @@ package installator.stages.config;
 
 import installator.Configuration;
 
+import java.io.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -68,18 +69,18 @@ public abstract class ConfigStage<T> {
 	}
 
 	public void run() {
-		if (!Configuration.gui) {
-				while(data == null)                   {
-					data = doInConsole();
-					System.out.println("in: data=" + data);
-				}
-			System.out.println("after: data=" + data);
-		} else {
-			data = panel.doInGUI();
-		}
+		data = panel.doInGUI();
 	}
 
-	public abstract T doInConsole();
+	public void run(BufferedReader reader) throws IOException{
+		data = doInConsole(reader);
+	}
+
+	public abstract T doInConsole(BufferedReader output) throws IOException;
+
+	protected boolean exitConsole(String command) {
+		return command.equalsIgnoreCase("quit") || command.equalsIgnoreCase("q");
+	}
 
 	protected void setPanel(StagePanel<T> panel) {
 		this.panel = panel;

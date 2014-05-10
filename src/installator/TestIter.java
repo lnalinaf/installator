@@ -12,6 +12,7 @@ public class TestIter extends JFrame {
 		super();
 		Dimension d = new Dimension(400, 300);
 		setMinimumSize(d);
+		setSize(400, 300);
 		setContentPane(panel);
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

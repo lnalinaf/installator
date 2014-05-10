@@ -19,16 +19,13 @@ public class StringStage extends ConfigStage<String> {
 	private String question;
 	private String defaultAnswer;
 
-	public String doInConsole() {
+	public String doInConsole(BufferedReader b) throws IOException {
 		System.out.println(question);
 		System.out.println("Например: " + defaultAnswer);
-
-		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
-			return b.readLine();
-		} catch (IOException e) {
-			System.out.println("Ошибка: " + e.getMessage() + "Попробуйте ввести еще раз:");
+		String s = b.readLine();
+		if(exitConsole(s))
 			return null;
-		}
+		return s;
 	}
 
 	/**

@@ -2,25 +2,19 @@ package installator.stages.config;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class LicenseStage extends ConfigStage<Boolean> {
 	String text;
 	String question;
 
-	public Boolean doInConsole() {
+	public Boolean doInConsole(BufferedReader b) throws IOException {
 		System.out.println(text);
 		System.out.println(question);
 		System.out.println("Наберите yes или y, если вы согласны");
-		String s;
-		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
-			s = b.readLine();
-		} catch (IOException e) {
-			System.out.println("Ошибка: " + e.getMessage() + "Попробуйте ввести еще раз:");
+		String s = b.readLine();
+		if(exitConsole(s))
 			return null;
-		}
-
-		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes");
+		return s.equalsIgnoreCase("y") || s.equalsIgnoreCase("yes") ? true : null;
 	}
 
 	/**
