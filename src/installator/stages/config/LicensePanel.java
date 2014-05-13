@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * @author cfif11
@@ -21,6 +23,7 @@ class LicensePanel extends StagePanel<Boolean> {
 	LicensePanel(int index, String text, String question) {
 		super(index);
 		init();
+		button2.setEnabled(false);
 		label2.setText(question);
 		textPane1.setText(text);
 		button3.addActionListener(exitListener);
@@ -29,6 +32,15 @@ class LicensePanel extends StagePanel<Boolean> {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+			}
+		});
+		checkBox1.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (checkBox1.isSelected())
+					button2.setEnabled(true);
+				else
+					button2.setEnabled(false);
 			}
 		});
 	}

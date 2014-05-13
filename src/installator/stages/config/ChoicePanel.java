@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 /**
  * @author cfif11
  */
 class ChoicePanel extends StagePanel<Integer> {
+
 	private JPanel panel1;
 	private JButton button1;
 	private JButton button2;
@@ -17,6 +20,12 @@ class ChoicePanel extends StagePanel<Integer> {
 	private ButtonGroup buttonGroup = new ButtonGroup();
 	private JLabel label;
 	private JPanel panel2;
+	private ItemListener itemListener = new ItemListener() {
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			button2.setEnabled(true);
+		}
+	};
 
 	ChoicePanel(int index, String text, String[] radioButtonsText) {
 		super(index);
@@ -28,6 +37,7 @@ class ChoicePanel extends StagePanel<Integer> {
 		for (int i = 0; i < radioButtonsText.length; i++) {
 			radioButtons[i] = new JRadioButton();
 			radioButtons[i].setText(radioButtonsText[i]);
+			radioButtons[i].addItemListener(itemListener);
 			gbc = new GridBagConstraints();
 			gbc.gridx = 0;
 			gbc.gridy = i + 1;
@@ -35,6 +45,7 @@ class ChoicePanel extends StagePanel<Integer> {
 			panel2.add(radioButtons[i], gbc);
 			buttonGroup.add(radioButtons[i]);
 		}
+		button2.setEnabled(false);
 		button3.addActionListener(exitListener);
 		button2.addActionListener(nextListener);
 		button1.addActionListener(new ActionListener() {

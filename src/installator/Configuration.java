@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Класс, который содержит в себе всю информацию о конфигурации установки
@@ -17,7 +18,7 @@ public class Configuration {
 
 	public static boolean gui;
 
-	private ArrayList<ConfigStage> list;
+	private List<ConfigStage> list;
 	private final Parameters parameters = new Parameters();
 	private TestIter form;
 
@@ -27,10 +28,10 @@ public class Configuration {
 	 * @param stages список стадий
 	 * @param isGUI  использовать GUI режим?
 	 */
-	Configuration(ArrayList<ConfigStage> stages, boolean isGUI) {
+	Configuration(List<ConfigStage> stages, boolean isGUI) {
 		this.list = stages;
+		list.add(new ExecutionStage("Установка выполняется. Пожалуйста подождите."));
 		gui = isGUI;
-		run();
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class Configuration {
 	 *
 	 * @return список стадий
 	 */
-	public ArrayList<ConfigStage> getListStages() {
+	public List<ConfigStage> getListStages() {
 		return list;
 	}
 
@@ -64,7 +65,7 @@ public class Configuration {
 		};
 	}    */
 
-	private void run() {
+	void run() {
 		if (gui) {
 			form = new TestIter();
 			for (int i = 0; i < list.size(); i++) {
@@ -79,8 +80,12 @@ public class Configuration {
 								"Для завршения работы инсталлятора нажмити кнопку \"Выход\"."));
 						form.getContentPane().remove(cur.getPanel().getGUI());
 						continue;
+					} else if(i == list.size() - 1) {
+						list.add(i + 1, new ExitStage("Программный продукт был успешно установлен. " +
+								"Для выхода из инсталлятора нажмите \"Выход\"."));
+						form.getContentPane().remove(cur.getPanel().getGUI());
+						continue;
 					}
-
 					parameters.addParameter(i, cur.getData());
 					form.getContentPane().remove(cur.getPanel().getGUI());
 				}
@@ -106,5 +111,9 @@ public class Configuration {
 				System.out.println("На стадии № " + index + " произошла ошибка: " + e.getMessage());
 			}
 		}
+	}
+
+	Parameters getParameters() {
+		return parameters;
 	}
 }

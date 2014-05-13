@@ -21,11 +21,6 @@ public abstract class ConfigStage<T> {
 	protected T data;
 	protected boolean usable = true;
 
-	class Lock {
-
-	}
-	private final Lock lock = new Lock();
-
 	private static final AtomicInteger STAGE_NUMERATOR = new AtomicInteger();
 	private StagePanel<T> panel;
 
