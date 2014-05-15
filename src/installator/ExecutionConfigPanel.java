@@ -1,6 +1,6 @@
-package installator.stages.config;
+package installator;
 
-import installator.Execution;
+import installator.stages.config.StagePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,18 +8,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by cfif11 on 11.05.14.
+ * @author cfif11
  */
-public class ExecutionPanel extends StagePanel<Boolean> {
+class ExecutionConfigPanel extends StagePanel<Boolean> {
 
+	public static final String TEXT_FOR_SUCCESS_INSTALL = "Установка успешно завершена! Для выхода из установки нажмите \"Продолжить\".";
 	private JPanel panel1;
 	private JButton button1;
 	private JTextPane textPane1;
 	private JProgressBar progressBar1;
 	private JButton button2;
 	private Execution execution;
-	private ExecutionStage executionStage;
-	protected ActionListener exitListener = new ActionListener() {
+	private ExecutionConfigStage executionConfigStage;
+	private	Thread threadExecute;
+	private ActionListener exitListener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int userAnswer = JOptionPane.showOptionDialog($$$getRootComponent$$$(), "Вы действительно хотите отменить установку?",
@@ -31,11 +33,10 @@ public class ExecutionPanel extends StagePanel<Boolean> {
 			}
 		}
 	};
-	Thread threadExecute;
 
-	public ExecutionPanel(int index, String text, ExecutionStage executionStage) {
+	ExecutionConfigPanel(int index, String text, ExecutionConfigStage executionConfigStage) {
 		super(index);
-		this.executionStage = executionStage;
+		this.executionConfigStage = executionConfigStage;
 		textPane1.setText(text);
 		init();
 		button2.setEnabled(false);
@@ -51,9 +52,9 @@ public class ExecutionPanel extends StagePanel<Boolean> {
 
 	@Override
 	protected void init() {
-		panel1.setSize(400, 300);
-		button1.setText("Отмена");
-		button2.setText("Продолжить");
+		panel1.setSize(STANDARD_SIZE);
+		button1.setText(CANCEL);
+		button2.setText(NEXT);
 
 	}
 
@@ -62,11 +63,11 @@ public class ExecutionPanel extends StagePanel<Boolean> {
 	}
 
 	@Override
-	Boolean doInGUI() {
+	protected Boolean doInGUI() {
 		threadExecute = Thread.currentThread();
-		if (execution.run(executionStage) != -1) {
+		if (execution.run(executionConfigStage) != -1) {
 			button2.setEnabled(true);
-			textPane1.setText("Установка успешно завершена! Для выхода из установки нажмите \"Продолжить\".");
+			textPane1.setText(TEXT_FOR_SUCCESS_INSTALL);
 			data = true;
 			return super.doInGUI();
 		} else {

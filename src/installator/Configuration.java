@@ -5,7 +5,6 @@ import installator.stages.config.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,21 +15,32 @@ import java.util.List;
  */
 public class Configuration {
 
+	/**
+	 * Статическая переменная, которая показывает, в каком режиме будет работать установщик. Графическом или текстовом.
+	 */
 	public static boolean gui;
+
+	private static final String TEXT_TO_CANCEL_GUI = "Установка была отменена. " +
+			"Для завршения работы инсталлятора нажмити кнопку \"Выход\".";
+	private static final String TEXT_TO_CANCEL_CONS = "Инствллятор будет закрыт. " +
+			"Нажмите \"Ввод\" для продолжения...";
+	private static final String TEXT_TO_SUCCESSFUL = "Программный продукт был успешно установлен. " +
+			"Для выхода из инсталлятора нажмите \"Выход\".";
+	private static final String TEXT_FOR_EXEC_CONFIG_STAGE = "Установка выполняется. Пожалуйста подождите.";
 
 	private List<ConfigStage> list;
 	private final Parameters parameters = new Parameters();
 	private TestIter form;
 
 	/**
-	 * Создать Конфигурацию
+	 * Создает новую Конфигурацию
 	 *
 	 * @param stages список стадий
 	 * @param isGUI  использовать GUI режим?
 	 */
 	Configuration(List<ConfigStage> stages, boolean isGUI) {
 		this.list = stages;
-		list.add(new ExecutionStage("Установка выполняется. Пожалуйста подождите."));
+		list.add(new ExecutionConfigStage(TEXT_FOR_EXEC_CONFIG_STAGE));
 		gui = isGUI;
 	}
 
@@ -43,74 +53,58 @@ public class Configuration {
 		return list;
 	}
 
-/*	@Override
-	public Iterator<ConfigStage> iterator() {
-		return new Iterator<ConfigStage>() {
-			Iterator<ConfigStage> temp = list.iterator();
-
-			@Override
-			public boolean hasNext() {
-				return temp.hasNext();
-			}
-
-			@Override
-			public ConfigStage next() {
-				return null;
-			}
-
-			@Override
-			public void remove() {
-
-			}
-		};
-	}    */
-
 	void run() {
 		if (gui) {
-			form = new TestIter();
+			runGui();
+		} else {
+			runConsole();
+		}
+	}
+
+	private void runConsole() {
+		int index = 0;
+		try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
 			for (int i = 0; i < list.size(); i++) {
 				ConfigStage<?> cur = list.get(i);
 				if (cur.isUsable()) {
-					form.getContentPane().add(cur.getPanel().getGUI());
-					form.setVisible(true);
-					cur.run();
+					index = cur.getIndex();
+					cur.run(b);
 
-					if(cur.getData() == null) {
-						list.add(i + 1, new ExitStage("Установка была отменена. " +
-								"Для завршения работы инсталлятора нажмити кнопку \"Выход\"."));
-						form.getContentPane().remove(cur.getPanel().getGUI());
-						continue;
-					} else if(i == list.size() - 1) {
-						list.add(i + 1, new ExitStage("Программный продукт был успешно установлен. " +
-								"Для выхода из инсталлятора нажмите \"Выход\"."));
-						form.getContentPane().remove(cur.getPanel().getGUI());
-						continue;
-					}
-					parameters.addParameter(i, cur.getData());
-					form.getContentPane().remove(cur.getPanel().getGUI());
+					if(cur.getData() == null)
+						list.add(i + 1, new ExitStage(TEXT_TO_CANCEL_CONS));
+					finishedStage(i, cur);
 				}
 			}
-		} else {
-			int index = 0;
-			try (BufferedReader b = new BufferedReader(new InputStreamReader(System.in))) {
-				for (int i = 0; i < list.size(); i++) {
-					ConfigStage<?> cur = list.get(i);
-					if (cur.isUsable()) {
-						index = cur.getIndex();
-						cur.run(b);
-						if(cur.getData() == null) {
-							list.add(i + 1, new ExitStage("Инствллятор будет закрыт. " +
-									"Нажмите \"Ввод\" для продолжения..."));
-							System.out.println("!!!");
-							continue;
-						}
-						parameters.addParameter(i, cur.getData());
-					}
+		} catch (IOException e) {
+			System.out.println("На стадии № " + index + " произошла ошибка: " + e.getMessage());
+		}
+	}
+
+	private void runGui() {
+		form = new TestIter();
+		for (int i = 0; i < list.size(); i++) {
+			ConfigStage<?> cur = list.get(i);
+			if (cur.isUsable()) {
+				form.getContentPane().add(cur.getPanel().getGUI());
+				form.setVisible(true);
+				cur.run();
+
+				if(cur.getData() == null) {
+					list.add(i + 1, new ExitStage(TEXT_TO_CANCEL_GUI));
+				} else if(i == list.size() - 1) {
+					list.add(i + 1, new ExitStage(TEXT_TO_SUCCESSFUL));
 				}
-			} catch (IOException e) {
-				System.out.println("На стадии № " + index + " произошла ошибка: " + e.getMessage());
+				finishedStage(i, cur);
 			}
 		}
+	}
+
+	private void finishedStage(int i, ConfigStage<?> cur) {
+		if(gui)
+			form.getContentPane().remove(cur.getPanel().getGUI());
+		if(cur.getConfigManager() != null)
+			cur.getConfigManager().managedConfigStages(this, cur.getData());
+		parameters.addParameter(i, cur.getData());
 	}
 
 	Parameters getParameters() {

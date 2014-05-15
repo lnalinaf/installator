@@ -2,6 +2,7 @@ package installator.stages.config;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +11,9 @@ import java.awt.event.ActionListener;
  */
 public abstract class StagePanel<T> {
 
+	public static final String CANCEL = "Отмена";
+	public static final String NEXT = "Продолжить";
+	public static final Dimension STANDARD_SIZE = new Dimension(400, 300);
 	protected T data;
 	protected int index;
 	protected volatile boolean ready;
@@ -51,7 +55,7 @@ public abstract class StagePanel<T> {
 		}
 	}
 
-	T doInGUI() {
+	protected T doInGUI() {
 		synchronized (lock) {
 			try {
 				lock.wait();

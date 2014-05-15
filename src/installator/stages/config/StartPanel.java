@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by cfif11 on 06.05.14.
+ * @author cfif11
  */
 public class StartPanel extends StagePanel<Boolean> {
 	private JPanel panel1;

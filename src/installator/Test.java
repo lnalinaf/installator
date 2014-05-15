@@ -32,7 +32,7 @@ public class Test {
 		listExec.add(new DelayStage());
 
 
-		config = new Configuration(listConf, false);
+		config = new Configuration(listConf, true);
 		execution = new Execution(listExec);
 		installer = new Installer(config, execution);
 		installer.startInstall();

@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * @author cfif11
  */
-public class TestIter extends JFrame {
+class TestIter extends JFrame {
 
 	TestIter() {
 		super();
