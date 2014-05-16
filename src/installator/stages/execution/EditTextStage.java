@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Стадия редактирования текстового файла
+ */
 public abstract class EditTextStage implements ExecStage {
 
 	String nameTextFile = null;
 	private final List<String> strings = new ArrayList<>();
+
 
 	public EditTextStage(String nameTextFile) {
 		this.nameTextFile = nameTextFile;

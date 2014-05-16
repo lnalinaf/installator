@@ -3,7 +3,8 @@ package installator.stages.execution;
 import java.io.IOException;
 
 /**
- * Created by cfif11 on 13.05.14.
+ * Стадия ожидания некоторого времени
+ * @author cfif11
  */
 public class DelayStage implements ExecStage {
 	@Override

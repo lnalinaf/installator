@@ -4,12 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * Created by cfif11 on 06.05.14.
+ * Стадия приветствия
+ *  @author cfif11
  */
 public class StartStage extends ConfigStage<Boolean>{
 
 	private String text;
 
+	/**
+	 * Создает стадию приветствия
+	 * @param text
+	 */
 	public StartStage(String text) {
 		this.text = text;
 		setPanel(new StartPanel(index, text));

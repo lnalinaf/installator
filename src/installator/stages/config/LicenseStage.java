@@ -3,6 +3,12 @@ package installator.stages.config;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * Класс для создания стадии с Лицензионным приглашением. Если пользовател его не принял, установка дальше недоступна
+ * или завершается(в зависимости от режима работы с инсталлятором)
+ *
+ * @author alina
+ */
 public class LicenseStage extends ConfigStage<Boolean> {
 	String text;
 	String question;

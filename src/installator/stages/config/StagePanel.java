@@ -7,16 +7,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author agalkin
+ *
+ * Класс для использования графической формы стадии.
+ * @author cfif11
  */
 public abstract class StagePanel<T> {
 
+	/**
+	 * Текст для кнопки "отмена"
+	 */
 	public static final String CANCEL = "Отмена";
+
+	/**
+	 * Текст для кнопки "продолжить"
+	 */
 	public static final String NEXT = "Продолжить";
+
+	/**
+	 * Стандартный размер окна установщика
+	 */
 	public static final Dimension STANDARD_SIZE = new Dimension(400, 300);
+
+	/**
+	 * Данные, которые считывает программа со стадии при взаимодействии с пользователем
+	 */
 	protected T data;
+
+	/**
+	 * Индефикатор стадии
+	 */
 	protected int index;
-	protected volatile boolean ready;
+
+	/**
+	 * Слушатель для вызова диалога о завершении программы.
+	 */
 	protected ActionListener exitListener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -27,6 +51,10 @@ public abstract class StagePanel<T> {
 				exit();
 		}
 	};
+
+	/**
+	 * Слушатель для перехода на следующую стадию
+	 */
 	protected ActionListener nextListener = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -38,23 +66,41 @@ public abstract class StagePanel<T> {
 
 	}
 
-	protected final Lock lock = new Lock();
+	private final Lock lock = new Lock();
 
+	/**
+	 * Создание панели
+	 * @param index индефикатор стадии
+	 */
 	public StagePanel(int index) {
 		this.index = index;
 	}
 
+	/**
+	 * Возвращает Графическую {@link javax.swing.JPanel панель}
+	 * @return
+	 */
 	public abstract JPanel getGUI();
 
+	/**
+	 * Инициализация стадии
+	 */
 	protected abstract void init();
 
+	/**
+	 * Вычисление данных при работе с пользователем.
+	 */
 	protected void calcData() {
 		synchronized (lock) {
-			ready = true;
 			lock.notifyAll();
 		}
 	}
 
+
+	/**
+	 * Не закрывает стадию, пока работа с ней не будет закончена
+	 * @return
+	 */
 	protected T doInGUI() {
 		synchronized (lock) {
 			try {
@@ -66,6 +112,9 @@ public abstract class StagePanel<T> {
 		}
 	}
 
+	/**
+	 * Выход из стадии
+	 */
 	protected void exit() {
 		synchronized (lock) {
 			data = null;

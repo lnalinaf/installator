@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * Created by cfif11 on 06.05.14.
+ * Стадия для завершения работы инсталлятора.(Установку прервали или она завершилась)
+ *  @author cfif11
  */
 public class ExitStage extends ConfigStage<Void> {
 
